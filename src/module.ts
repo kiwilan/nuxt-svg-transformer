@@ -104,7 +104,7 @@ export default defineNuxtModule<ModuleOptions>({
     const icons = Icons.make({
       assets: `${root}/${options.assets}`,
       // cache: `${root}/${options.cache}`,
-      type: `${root}/.nuxt/icons/index.d.ts`,
+      // type: `${root}/.nuxt/icons/index.d.ts`,
       components: `${root}/.nuxt/icons/components.ts`,
     })
 
