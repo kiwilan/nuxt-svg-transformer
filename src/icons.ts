@@ -80,6 +80,6 @@ export class Icons {
     typeDirs.pop()
     const typeDir = typeDirs.join('/')
     if (!existsSync(typeDir))
-      mkdirSync(typeDir)
+      mkdirSync(typeDir, { recursive: true })
   }
 }
