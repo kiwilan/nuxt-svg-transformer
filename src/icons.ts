@@ -3,7 +3,7 @@ import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync } f
 interface Paths {
   assets: string
   // cache: string
-  type: string
+  // type: string
   components: string
 }
 interface File {
@@ -65,21 +65,10 @@ export class Icons {
       this.types += `'${file.name}' | `
     })
     this.types = this.types.slice(0, -3)
-    const stream = createWriteStream(this.paths.type)
-    stream.once('open', () => {
-      stream.write(this.types)
-      stream.end()
-    })
   }
 
   private setPaths(): void {
     mkdirSync(this.paths.assets, { recursive: true })
-    // mkdirSync(this.paths.cache, { recursive: true })
-
-    const typeDirs = this.paths.type.split('/')
-    typeDirs.pop()
-    const typeDir = typeDirs.join('/')
-    if (!existsSync(typeDir))
-      mkdirSync(typeDir, { recursive: true })
+    mkdirSync(this.paths.components, { recursive: true })
   }
 }
