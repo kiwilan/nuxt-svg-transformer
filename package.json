@@ -1,6 +1,6 @@
 {
-  "name": "my-module",
-  "version": "1.0.0",
+  "name": "nuxt-svg-transformer",
+  "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -28,8 +28,14 @@
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@types/node": "^18.11.9",
+    "@vue/runtime-core": "^3.2.45",
+    "autoprefixer": "^10.4.13",
     "eslint": "^8.28.0",
     "nuxt": "^3.0.0",
-    "typescript": "^4.9.3"
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3",
+    "vue": "^3.2.45"
   }
 }
