@@ -22,17 +22,17 @@ export interface ModuleOptions {
      */
     assets: string
     /**
-     * The path to the directory where generated icon components are stored. If directory is not found, it will be created.
+     * The path to the directory where generated icon components are stored. If directory is not found, it will be created. You could ignore this directory from version control.
      *
-     * @default '.nuxt/icons'
+     * @default 'components/icons'
      */
     cache: string
-    /**
-     * The path to the directory where types will be injected. If directory is not found, it will be created.
-     *
-     * @default '.nuxt/icons/index.d.ts'
-     */
-    type: string
+    // /**
+    //  * The path to the directory where types will be injected. If directory is not found, it will be created.
+    //  *
+    //  * @default '.nuxt/icons/index.d.ts'
+    //  */
+    // type: string
   }
   /**
    * Name of the component to use in your application
@@ -46,12 +46,12 @@ export interface ModuleOptions {
    * @default 'SvgIcon'
    */
   componentName: string
-  /**
-   * Global option to toggle lazy icons.
-   *
-   * @default true
-   */
-  lazy: boolean
+  // /**
+  //  * Global option to toggle lazy icons.
+  //  *
+  //  * @default true
+  //  */
+  // lazy: boolean
   /**
    * Global options to toggle reactive icons.
    *
@@ -82,11 +82,11 @@ const DEFAULTS: ModuleOptions = {
   root: false,
   paths: {
     assets: 'assets/icons',
-    cache: '.nuxt/icons',
-    type: '.nuxt/icons/index.d.ts',
+    cache: 'components/icons',
+    // type: '.nuxt/icons/index.d.ts',
   },
   componentName: 'SvgIcon',
-  lazy: true,
+  // lazy: true,
   reactive: false,
   autoTitle: true,
   fallback: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" style="width: 1.5rem; height: 1.5rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>',
@@ -108,10 +108,11 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.root)
       root += `/${options.root}`
 
-    Icons.make({
+    const icons = Icons.make({
       assets: `${root}/${options.paths.assets}`,
       cache: `${root}/${options.paths.cache}`,
-      type: `${root}/${options.paths.type}`,
+      type: `${root}/.nuxt/icons/index.d.ts`,
+      components: `${root}/.nuxt/icons/components.ts`,
     })
 
     const { resolve } = createResolver(import.meta.url)
@@ -123,10 +124,15 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolve(runtimeDir, 'component.vue'),
     })
 
+    const list = {
+      ...options,
+      lazy: true,
+      components: icons.components,
+    }
+
     nuxt.options.alias['#svg-transformer-options'] = addTemplate({
       filename: 'svg-transformer-options.mjs',
-      // path: options.paths.cache,
-      getContents: () => Object.entries(options).map(([key, value]) =>
+      getContents: () => Object.entries(list).map(([key, value]) =>
         `export const ${key} = ${JSON.stringify(value, null, 2)}
       `).join('\n'),
     }).dst
