@@ -2,7 +2,7 @@ import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync } f
 
 interface Paths {
   assets: string
-  cache: string
+  // cache: string
   type: string
   components: string
 }
@@ -74,7 +74,7 @@ export class Icons {
 
   private setPaths(): void {
     mkdirSync(this.paths.assets, { recursive: true })
-    mkdirSync(this.paths.cache, { recursive: true })
+    // mkdirSync(this.paths.cache, { recursive: true })
 
     const typeDirs = this.paths.type.split('/')
     typeDirs.pop()

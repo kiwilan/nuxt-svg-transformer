@@ -12,28 +12,23 @@ export interface ModuleOptions {
    */
   root: string | false
   /**
-   * Customizable paths for icons.
+   * The path to the directory where SVG are stored. If directory is not found, it will be created.
+   *
+   * @default 'assets/icons'
    */
-  paths: {
-    /**
-     * The path to the directory where SVG are stored. If directory is not found, it will be created.
-     *
-     * @default 'assets/icons'
-     */
-    assets: string
-    /**
-     * The path to the directory where generated icon components are stored. If directory is not found, it will be created. You could ignore this directory from version control.
-     *
-     * @default 'components/icons'
-     */
-    cache: string
-    // /**
-    //  * The path to the directory where types will be injected. If directory is not found, it will be created.
-    //  *
-    //  * @default '.nuxt/icons/index.d.ts'
-    //  */
-    // type: string
-  }
+  assets: string
+  // /**
+  //  * The path to the directory where generated icon components are stored. If directory is not found, it will be created. You could ignore this directory from version control.
+  //  *
+  //  * @default '.nuxt/icons'
+  //  */
+  // cache: string
+  // /**
+  //  * The path to the directory where types will be injected. If directory is not found, it will be created.
+  //  *
+  //  * @default '.nuxt/icons/index.d.ts'
+  //  */
+  // type: string
   /**
    * Name of the component to use in your application
    *
@@ -80,11 +75,9 @@ export interface ModuleOptions {
 
 const DEFAULTS: ModuleOptions = {
   root: false,
-  paths: {
-    assets: 'assets/icons',
-    cache: 'components/icons',
-    // type: '.nuxt/icons/index.d.ts',
-  },
+  assets: 'assets/icons',
+  // cache: 'components/icons',
+  // type: '.nuxt/icons/index.d.ts',
   componentName: 'SvgIcon',
   // lazy: true,
   reactive: false,
@@ -109,8 +102,8 @@ export default defineNuxtModule<ModuleOptions>({
       root += `/${options.root}`
 
     const icons = Icons.make({
-      assets: `${root}/${options.paths.assets}`,
-      cache: `${root}/${options.paths.cache}`,
+      assets: `${root}/${options.assets}`,
+      // cache: `${root}/${options.cache}`,
       type: `${root}/.nuxt/icons/index.d.ts`,
       components: `${root}/.nuxt/icons/components.ts`,
     })
