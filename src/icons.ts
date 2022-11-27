@@ -1,4 +1,4 @@
-import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync } from 'fs'
+import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync, rmSync } from 'fs'
 
 interface Paths {
   assets: string
@@ -68,7 +68,16 @@ export class Icons {
   }
 
   private setPaths(): void {
-    mkdirSync(this.paths.assets, { recursive: true })
-    mkdirSync(this.paths.components, { recursive: true })
+    const componentsPaths = this.paths.components.split('/')
+    componentsPaths.pop()
+    const componentsPath = componentsPaths.join('/')
+
+    if (!existsSync(this.paths.assets))
+      mkdirSync(this.paths.assets, { recursive: true })
+
+    if (existsSync(componentsPath))
+      rmSync(componentsPath, { force: true, recursive: true })
+
+    mkdirSync(componentsPath, { recursive: true })
   }
 }

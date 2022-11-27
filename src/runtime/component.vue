@@ -20,10 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const options = {
   root: root as string,
-  paths: {
-    cache: paths.cache as string,
-  },
-  lazy: lazy as boolean,
+  // lazy: lazy as boolean,
   reactive: reactive as boolean,
   autoTitle: autoTitle as boolean,
   fallback: fallback as string,
@@ -32,8 +29,7 @@ const options = {
 }
 
 const config = {
-  // lazy: props.lazy ?? options.lazy,
-  lazy: options.lazy,
+  // lazy: options.lazy,
   reactive: props.reactive ?? options.reactive,
   autoTitle: options.autoTitle,
   fallback: options.fallback,
