@@ -23,7 +23,7 @@ pnpm add nuxt-svg-transformer -D
 ## Features
 
 - 🔎 Vue component ready: `SvgIcon`
-- 🔥 Use `Suspense` to load SVG
+- 🔥 Hot reloading when SVG updated
 - 🤙🏻 Reactivity option
 - 📦 No import needed: SVG directly injected
 - 🦾 TypeScript: SVG typed, validate by `name` prop
@@ -52,8 +52,10 @@ export default defineNuxtConfig({
 Put your SVG into `assets` path from config, default is `assets/icons`.
 
 ```bash
-assets
-  icons
+assets/
+  icons/
+    nest-dir/
+      arrow.svg
     home.svg
     about.svg
     contact.svg
@@ -66,6 +68,7 @@ In any Vue component.
 <template>
   <div>
     <svg-icon name="home" />
+    <svg-icon name="nest-dir-arrow" />
   </div>
 </template>
 ```

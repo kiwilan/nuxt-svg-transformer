@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'url'
+import path from 'path'
 import { addComponent, addPlugin, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import { Icons } from './icons'
@@ -86,6 +87,17 @@ const DEFAULTS: ModuleOptions = {
   log: true,
 }
 
+const setIcons = async (options: ModuleOptions) => {
+  let root = process.cwd()
+  if (options.root)
+    root += `/${options.root}`
+
+  return await Icons.make({
+    assets: `${root}/${options.assets}`,
+    components: `${root}/.nuxt/icons/components.ts`,
+  })
+}
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
@@ -96,16 +108,12 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: DEFAULTS,
-  setup(options, nuxt) {
-    let root = process.cwd()
-    if (options.root)
-      root += `/${options.root}`
+  async setup(options, nuxt) {
+    const icons = await setIcons(options)
 
-    const icons = Icons.make({
-      assets: `${root}/${options.assets}`,
-      // cache: `${root}/${options.cache}`,
-      // type: `${root}/.nuxt/icons/index.d.ts`,
-      components: `${root}/.nuxt/icons/components.ts`,
+    nuxt.hook('builder:watch', async (event, path) => {
+      if (path.startsWith(options.assets))
+        await setIcons(options)
     })
 
     const { resolve } = createResolver(import.meta.url)

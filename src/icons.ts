@@ -1,14 +1,12 @@
 import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync, rmSync } from 'fs'
+import type { File } from './reader'
+import Reader from './reader'
 
 interface Paths {
   assets: string
   // cache: string
   // type: string
   components: string
-}
-interface File {
-  name: string
-  path: string
 }
 
 export class Icons {
@@ -21,25 +19,18 @@ export class Icons {
     this.paths = paths
   }
 
-  public static make(paths: Paths): Icons {
+  public static async make(paths: Paths): Promise<Icons> {
     const icons = new Icons(paths)
     icons.setPaths()
-    icons.sync()
+    await icons.sync()
     icons.convert()
 
     return icons
   }
 
-  public sync(): void {
-    readdirSync(`${this.paths.assets}`).forEach((file) => {
-      const extension = file.split('.').pop()
-      if (extension === 'svg') {
-        this.files.push({
-          name: file.split('.').slice(0, -1).join('.'),
-          path: `${this.paths.assets}/${file}`,
-        })
-      }
-    })
+  public async sync() {
+    const reader = await Reader.make(this.paths.assets, 'svg')
+    this.files = reader.getFilesList()
   }
 
   public convert(): void {
@@ -53,7 +44,7 @@ export class Icons {
         const content = readFileSync(file.path, 'utf8')
         let svg = content.replace(/^ +/gm, '')
         svg = svg.replace(/[\r\n]/gm, ' ')
-        stream.write(`  ${file.name}: '${svg}',\n`)
+        stream.write(`  '${file.slug}': '${svg}',\n`)
       })
       stream.write('}\n')
       stream.end()
@@ -62,7 +53,7 @@ export class Icons {
 
   private setTypes(): void {
     this.files.forEach((file) => {
-      this.types += `'${file.name}' | `
+      this.types += `'${file.slug}' | `
     })
     this.types = this.types.slice(0, -3)
   }
