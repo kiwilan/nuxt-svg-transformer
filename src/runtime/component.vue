@@ -5,7 +5,6 @@ import type { Icon } from '@/.nuxt/icons'
 import { autoTitle, fallback, lazy, log, reactive, root } from '#svg-transformer-options'
 
 interface Props {
-  // name: import('@/.nuxt/icons-types').Icon
   name: Icon
   title?: string
   lazy?: boolean
@@ -50,8 +49,6 @@ const component = shallowRef(h('span'))
 
 const loadComponent = async () => defineAsyncComponent({
   loader: async () => {
-    // const modules = import.meta.glob('../../playground/.nuxt/icons/*.vue')
-
     // return import(`./playground/.nuxt/icons/${props.name}.vue`)
     return import(options.root
       ? `../../${options.root}/.nuxt/icons/${props.name}.vue`
@@ -63,7 +60,9 @@ const loadComponent = async () => defineAsyncComponent({
         if (config.log)
           console.warn(`SVG icon not found: ${props.name}`)
         return h('div', {
-          innerHTML: config.fallback,
+          innerHTML: config.fallback
+            ? config.fallback
+            : '',
         })
       })
   },
