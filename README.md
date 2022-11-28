@@ -90,7 +90,7 @@ In any Vue component.
   <div>
     <svg-icon name="home" /> <!-- inject home.svg -->
     <svg-icon name="abut" /> <!-- Type error! -->
-    <svg-icon name="nest-dir-arrow" /> <!-- inject nest-dir/arrow.svg -->
+    <svg-icon name="nest-dir/arrow" /> <!-- inject nest-dir/arrow.svg -->
   </div>
 </template>
 ```

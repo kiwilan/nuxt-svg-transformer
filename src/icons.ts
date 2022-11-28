@@ -33,6 +33,7 @@ export class Icons {
 
     icons.createPaths()
     icons.files = await icons.sync()
+
     icons.types = icons.setTypes()
     icons.convertSvg()
 
@@ -52,7 +53,7 @@ export class Icons {
    */
   private convertSvg(): void {
     this.files.forEach((file) => {
-      const stream = createWriteStream(`${this.paths.cache}/${file.slug}.ts`)
+      const stream = createWriteStream(`${this.paths.cache}/${file.filename}.ts`)
       stream.once('open', () => {
         stream.write(`const ${file.camelCase} = '${this.prepareSvg(file.path)}'\n`)
         stream.write(`export default ${file.camelCase}\n`)
@@ -74,7 +75,7 @@ export class Icons {
   private setTypes(): string {
     let types = this.types
     this.files.forEach((file) => {
-      types += `'${file.slug}' | `
+      types += `'${file.name}' | `
     })
     types = types.slice(0, -3)
 
@@ -85,7 +86,7 @@ export class Icons {
       // Write all SVG to TS file.
       stream.write('export const IconList: Record<IconType,Promise<{default: string}>> = {\n')
       this.files.forEach((file) => {
-        stream.write(`  '${file.slug}': import('./${file.slug}'),\n`)
+        stream.write(`  '${file.name}': import('./${file.filename}'),\n`)
       })
       stream.write('}\n')
       stream.end()

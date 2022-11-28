@@ -17,6 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   title: undefined,
   lazy: undefined,
   reactive: undefined,
+  log: undefined,
 })
 
 const options = {

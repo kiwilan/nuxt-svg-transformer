@@ -1,6 +1,6 @@
 {
   "name": "nuxt-svg-transformer",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Transform dynamically SVG into Vue component.",
   "repository": "kiwilan/nuxt-svg-transformer",
   "license": "MIT",

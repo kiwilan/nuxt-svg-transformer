@@ -3,6 +3,7 @@ import { readdir } from 'fs/promises'
 
 export interface File {
   name: string
+  filename: string
   slug: string
   camelCase: string
   path: string
@@ -50,6 +51,7 @@ export default class Reader {
 
         filesList.push({
           name: fullName,
+          filename: fullName.replace('/', '-'),
           slug: this.slugify(fullName),
           camelCase: this.camalize(fullName),
           path: file,
