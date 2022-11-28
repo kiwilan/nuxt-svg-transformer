@@ -4,7 +4,7 @@ import type { NuxtSvgTransformerModule } from '../types'
 import type { IconType } from '@/.nuxt/icons/components'
 import { IconList } from '@/.nuxt/icons/components'
 // @ts-expect-error type error
-import { assets, autoTitle, classDefault, clearClasses, clearStyles, componentName, components, fallback, lazy, log, reactive, root, sizeInherit, styleDefault, tagName } from '#svg-transformer-options'
+import { assets, autoTitle, classDefault, clearClasses, clearSize, clearStyles, componentName, components, fallback, lazy, log, reactive, root, sizeInherit, styleDefault, tagName } from '#svg-transformer-options'
 
 interface Props {
   name: IconType
@@ -34,6 +34,7 @@ const options: NuxtSvgTransformerModule = {
   classDefault: classDefault as string | undefined,
   styleDefault: styleDefault as string | undefined,
   clearClasses: clearClasses as boolean,
+  clearSize: clearSize as boolean,
   clearStyles: clearStyles as boolean,
   tagName: tagName as string,
   components: components as string[],

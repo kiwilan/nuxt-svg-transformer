@@ -24,6 +24,12 @@ export interface ModuleOptions {
    */
   clearClasses: boolean
   /**
+   * Clear native `width` and `height` attributes from SVGs.
+   *
+   * @default true
+   */
+  clearSize: boolean
+  /**
    * Clear all native styles from SVGs.
    *
    * @default false

@@ -63,6 +63,7 @@ export default defineNuxtConfig({
 | `autoTitle`     | `boolean`           | `true`            | Each SVG will have a `title` based on SVG filename.                                           |
 | `classDefault`  | `?string`           | `undefined`       | Add default classes to all SVGs.                                                              |
 | `clearClasses`  | `boolean`           | `false`           | Clear all classes from SVGs.                                                                  |
+| `clearSize`     | `boolean`           | `false`           | Clear `width` and `height` attributes from SVGs.                                              |
 | `clearStyles`   | `boolean`           | `false`           | Clear all native styles from SVGs.                                                            |
 | `componentName` | `string`            | `SvgIcon`         | Name of component.                                                                            |
 | `fallback`      | `string` or `false` | `<svg ...></svg>` | Fallback SVG if error, can be set to `false` to have no render.                               |
