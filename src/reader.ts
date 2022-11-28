@@ -7,6 +7,9 @@ export interface File {
   path: string
 }
 
+/**
+ * Read all files recursively into `dir` and return a list of files.
+ */
 export default class Reader {
   private directory: string
   private extension: string
@@ -21,11 +24,20 @@ export default class Reader {
   public static async make(dir: string, ext: string): Promise<Reader> {
     const reader = new Reader(dir, ext)
     reader.files = await reader.getFiles(reader.directory)
+    reader.filesList = reader.setFilesList()
 
     return reader
   }
 
+  /**
+   * Return `File[]`.
+   */
   public getFilesList(): File[] {
+    return this.filesList
+  }
+
+  private setFilesList(): File[] {
+    const filesList: File[] = []
     this.files.forEach((file) => {
       const extension = file.split('.').pop()
       if (extension === this.extension) {
@@ -33,9 +45,9 @@ export default class Reader {
         current = current.substring(1)
 
         let fullName = current.replace('/', '-')
-        fullName = fullName.replace(`.${this.extension}`, '')
+        fullName = current.replace(`.${this.extension}`, '')
 
-        this.filesList.push({
+        filesList.push({
           name: fullName,
           slug: this.slugify(fullName),
           path: file,
@@ -43,9 +55,12 @@ export default class Reader {
       }
     })
 
-    return this.filesList
+    return filesList
   }
 
+  /**
+   * Slugify a string.
+   */
   private slugify(str: string) {
     return str
       .toLowerCase()
@@ -55,6 +70,9 @@ export default class Reader {
       .replace(/^-+|-+$/g, '')
   }
 
+  /**
+   * Read all files recursively into `dir`.
+   */
   private async getFiles(dir: string): Promise<string[]> {
     const dirents = await readdir(dir, { withFileTypes: true })
     const files = await Promise.all(dirents.map((dirent) => {

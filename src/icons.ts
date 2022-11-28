@@ -1,74 +1,109 @@
-import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync, rmSync } from 'fs'
+import { createWriteStream, existsSync, mkdirSync, readFileSync, rmSync } from 'fs'
 import type { File } from './reader'
 import Reader from './reader'
 
 interface Paths {
   assets: string
-  // cache: string
-  // type: string
+  cache: string
   components: string
 }
 
+/**
+ * Parse SVG to convert to TS files and generate type.
+ */
 export class Icons {
-  public paths: Paths
-  public files: File[] = []
-  public types = 'export type IconType = '
-  public components: string[] = []
+  private paths: Paths
+  private files: File[] = []
+  private types = 'export type IconType = '
+  private components: string[] = []
 
-  constructor(paths: Paths) {
+  private constructor(paths: Paths) {
     this.paths = paths
   }
 
+  public getComponents(): string[] {
+    return this.components
+  }
+
+  /**
+   * Create a new instance of `Icons`.
+   */
   public static async make(paths: Paths): Promise<Icons> {
     const icons = new Icons(paths)
-    icons.setPaths()
-    await icons.sync()
-    icons.convert()
+
+    icons.createPaths()
+    icons.files = await icons.sync()
+    icons.types = icons.setTypes()
+    icons.convertSvg()
 
     return icons
   }
 
-  public async sync() {
+  /**
+   * Read all SVG recursively into `paths.assets` and return a list of files.
+   */
+  private async sync(): Promise<File[]> {
     const reader = await Reader.make(this.paths.assets, 'svg')
-    this.files = reader.getFilesList()
+    return reader.getFilesList()
   }
 
-  public convert(): void {
-    this.setTypes()
+  /**
+   * Convert SVG to TS files.
+   */
+  private convertSvg(): void {
+    this.files.forEach((file) => {
+      const stream = createWriteStream(`${this.paths.cache}/${file.slug}.ts`)
+      stream.once('open', () => {
+        stream.write(`const ${file.slug} = '${this.prepareSvg(file.path)}'\n`)
+        stream.write(`export default ${file.slug}\n`)
+        stream.end()
+      })
+    })
+  }
+
+  private prepareSvg(path: string): string {
+    const content = readFileSync(path, 'utf8')
+    const svg = content.replace(/^ +/gm, '')
+
+    return svg.replace(/[\r\n]/gm, ' ')
+  }
+
+  /**
+   * Prepare type `IconType` for TS file.
+   */
+  private setTypes(): string {
+    let types = this.types
+    this.files.forEach((file) => {
+      types += `'${file.slug}' | `
+    })
+    types = types.slice(0, -3)
 
     const stream = createWriteStream(this.paths.components)
     stream.once('open', () => {
+      // Write type `IconType` to TS file.
       stream.write(`${this.types}\n\n`)
-      stream.write('export const IconList: Record<IconType,string> = {\n')
+      // Write all SVG to TS file.
+      stream.write('export const IconList: Record<IconType,Promise<{default: string}>> = {\n')
       this.files.forEach((file) => {
-        const content = readFileSync(file.path, 'utf8')
-        let svg = content.replace(/^ +/gm, '')
-        svg = svg.replace(/[\r\n]/gm, ' ')
-        stream.write(`  '${file.slug}': '${svg}',\n`)
+        stream.write(`  '${file.slug}': import('./${file.slug}'),\n`)
       })
       stream.write('}\n')
       stream.end()
     })
+
+    return types
   }
 
-  private setTypes(): void {
-    this.files.forEach((file) => {
-      this.types += `'${file.slug}' | `
-    })
-    this.types = this.types.slice(0, -3)
-  }
-
-  private setPaths(): void {
-    const componentsPaths = this.paths.components.split('/')
-    componentsPaths.pop()
-    const componentsPath = componentsPaths.join('/')
-
+  /**
+   * Create paths if not exists, delete cache to refresh SVG.
+   */
+  private createPaths(): void {
     if (!existsSync(this.paths.assets))
       mkdirSync(this.paths.assets, { recursive: true })
 
-    if (existsSync(componentsPath))
-      rmSync(componentsPath, { force: true, recursive: true })
+    if (existsSync(this.paths.cache))
+      rmSync(this.paths.cache, { force: true, recursive: true })
 
-    mkdirSync(componentsPath, { recursive: true })
+    mkdirSync(this.paths.cache, { recursive: true })
   }
 }

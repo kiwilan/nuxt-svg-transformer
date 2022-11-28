@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import { ref, useAttrs, watch } from 'vue'
+import { onMounted, ref, useAttrs, watch } from 'vue'
 import type { IconType } from '@/.nuxt/icons/components'
 import { IconList } from '@/.nuxt/icons/components'
 // @ts-expect-error type error
-import { autoTitle, components, fallback, lazy, log, paths, reactive, root } from '#svg-transformer-options'
+import { autoTitle, components, fallback, lazy, log, reactive, root } from '#svg-transformer-options'
 
 interface Props {
   name: IconType
   title?: string
-  // lazy?: boolean
+  lazy?: boolean
   reactive?: boolean
+  log?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,20 +21,20 @@ const props = withDefaults(defineProps<Props>(), {
 
 const options = {
   root: root as string,
-  // lazy: lazy as boolean,
+  lazy: lazy as boolean,
   reactive: reactive as boolean,
   autoTitle: autoTitle as boolean,
-  fallback: fallback as string,
+  fallback: fallback as string | boolean,
   log: log as boolean,
   components: components as string[],
 }
 
 const config = {
-  // lazy: options.lazy,
+  lazy: props.lazy ?? options.lazy,
   reactive: props.reactive ?? options.reactive,
   autoTitle: options.autoTitle,
   fallback: options.fallback,
-  log: options.log,
+  log: props.log ?? options.log,
 }
 
 const svgTitle = ref()
@@ -48,19 +49,36 @@ const setTitle = () => {
 setTitle()
 
 const attrs = useAttrs()
-const svg = ref<string>()
+const svg = ref<string>('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem;"></svg>')
 
-const setSvg = () => {
-  svg.value = IconList[props.name] ?? options.fallback
+const setSvg = async () => {
+  const value = await IconList[props.name]
+
+  if (value) {
+    svg.value = value.default
+  }
+  else {
+    if (config.log)
+      console.warn(`[nuxt-svg-transformer] SVG "${props.name}" not found`)
+    if (typeof options.fallback === 'string')
+      svg.value = options.fallback
+  }
 }
 
-setSvg()
+if (config.lazy) {
+  onMounted(async () => {
+    await setSvg()
+  })
+}
+else {
+  await setSvg()
+}
 
 if (config.reactive) {
   watch(
     () => props.name,
-    () => {
-      setSvg()
+    async () => {
+      await setSvg()
     },
   )
 }

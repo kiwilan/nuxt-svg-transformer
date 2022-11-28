@@ -22,11 +22,12 @@ pnpm add nuxt-svg-transformer -D
 
 ## Features
 
-- 🔎 Vue component ready: `SvgIcon`
+- 🔎 Vue component ready with `SvgIcon`
 - 🔥 Hot reloading when SVG updated
 - 🤙🏻 Reactivity option
-- 📦 No import needed: SVG directly injected
-- 🦾 TypeScript: SVG typed, validate by `name` prop
+- 🗂 Seperated index SVG files
+- 📦 No import needed, SVG directly injected
+- 🦾 SVG typed, validate by `name` prop
 
 ## Usage
 
@@ -38,16 +39,28 @@ export default defineNuxtConfig({
     'nuxt-svg-transformer',
   ],
   svgTransformer: {
-    root: false,
     assets: 'assets/icons',
-    componentName: 'SvgIcon',
-    reactive: false,
     autoTitle: true,
+    componentName: 'SvgIcon',
     fallback: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" style="width: 1.5rem; height: 1.5rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>',
+    lazy: true,
     log: true,
+    reactive: false,
+    root: false,
   },
 })
 ```
+
+| **Option**      | **Type**            | **Default**       | **Description**                                                                   |
+| --------------- | ------------------- | ----------------- | --------------------------------------------------------------------------------- |
+| `assets`        | `string`            | `assets/icons`    | Path where original SVG stored.                                                   |
+| `autoTitle`     | `boolean`           | `true`            | Each SVG will have a `title` based on SVG filename.                               |
+| `componentName` | `string`            | `SvgIcon`         | Name of component.                                                                |
+| `fallback`      | `string` or `false` | `<svg ...></svg>` | Fallback SVG if error, can be set to `false` to have no render.                   |
+| `lazy`          | `boolean`           | `true`            | Lazy loading of SVG, can be override with prop.                                   |
+| `log`           | `boolean`           | `true`            | Log to alert if errors, can be override with prop.                                |
+| `reactive`      | `boolean`           | `false`           | Enable reactivity to allow `name` prop to be switched, can be override with prop. |
+| `root`          | `string` or `false` | `false`           | If your Nuxt app isn't on root project, set path of app like `playground`.        |
 
 Put your SVG into `assets` path from config, default is `assets/icons`.
 
@@ -67,11 +80,22 @@ In any Vue component.
 ```vue
 <template>
   <div>
-    <svg-icon name="home" />
-    <svg-icon name="nest-dir-arrow" />
+    <svg-icon name="home" /> <!-- inject home.svg -->
+    <svg-icon name="abut" /> <!-- Type error! -->
+    <svg-icon name="nest-dir-arrow" /> <!-- inject nest-dir/arrow.svg -->
   </div>
 </template>
 ```
+
+## `SvgIcon` Props
+
+| **Prop**   | **Type**   | **Required** | **Default** | **Description**                                                                             |
+| ---------- | ---------- | ------------ | ----------- | ------------------------------------------------------------------------------------------- |
+| `name`     | `IconType` | `true`       | `undefined` | Name of SVG.                                                                                |
+| `lazy`     | `boolean`  | `false`      | `undefined` | Lazy loading of SVG, default from config.                                                   |
+| `log`      | `boolean`  | `false`      | `undefined` | Log to warn if errors, default from config.                                                 |
+| `title`    | `string`   | `false`      | `undefined` | Set `title` attribute, default `title` will be SVG name if `autoTitle` is enable in config. |
+| `reactive` | `boolean`  | `false`      | `undefined` | Allow reactivity `name` from `ref()`, default from config.                                  |
 
 ## 💻 Development
 
