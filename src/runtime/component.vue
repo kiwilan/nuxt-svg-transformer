@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { onMounted, ref, useAttrs, watch } from 'vue'
+import type { NuxtSvgTransformerModule } from '../types'
 import type { IconType } from '@/.nuxt/icons/components'
 import { IconList } from '@/.nuxt/icons/components'
 // @ts-expect-error type error
-import { autoTitle, components, fallback, lazy, log, reactive, root } from '#svg-transformer-options'
+import { assets, autoTitle, classDefault, clearClasses, clearStyles, componentName, components, fallback, lazy, log, reactive, root, sizeInherit, styleDefault, tagName } from '#svg-transformer-options'
 
 interface Props {
   name: IconType
@@ -20,13 +21,21 @@ const props = withDefaults(defineProps<Props>(), {
   log: undefined,
 })
 
-const options = {
+const options: NuxtSvgTransformerModule = {
+  assets: assets as string,
+  componentName: componentName as string,
   root: root as string,
   lazy: lazy as boolean,
   reactive: reactive as boolean,
   autoTitle: autoTitle as boolean,
-  fallback: fallback as string | boolean,
+  fallback: fallback as string | false,
   log: log as boolean,
+  sizeInherit: sizeInherit as boolean,
+  classDefault: classDefault as string | undefined,
+  styleDefault: styleDefault as string | undefined,
+  clearClasses: clearClasses as boolean,
+  clearStyles: clearStyles as boolean,
+  tagName: tagName as string,
   components: components as string[],
 }
 
@@ -87,7 +96,9 @@ if (config.reactive) {
 
 <template>
   <Suspense>
-    <span v-bind="attrs" :title="svgTitle" v-html="svg" />
+    <component :is="tagName" v-bind="attrs" :title="svgTitle">
+      <span v-html="svg" />
+    </component>
     <template #fallback>
       <div>Loading...</div>
     </template>

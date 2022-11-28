@@ -12,6 +12,24 @@ export interface ModuleOptions {
    */
   autoTitle: boolean
   /**
+   * Add default classes to all SVGs.
+   *
+   * @default undefined
+   */
+  classDefault?: string
+  /**
+   * Clear all classes from SVGs.
+   *
+   * @default false
+   */
+  clearClasses: boolean
+  /**
+   * Clear all native styles from SVGs.
+   *
+   * @default false
+   */
+  clearStyles: boolean
+  /**
    * Name of the component to use in your application
    *
    * ```vue
@@ -54,4 +72,26 @@ export interface ModuleOptions {
    * @example 'playground'
    */
   root: string | false
+  /**
+   * Global options to toggle size inheritance, inline `style` `height: inherit; width: inherit;`.
+   *
+   * @default false
+   */
+  sizeInherit: boolean
+  /**
+   * Add default styles to all SVGs.
+   *
+   * @default undefined
+   */
+  styleDefault?: string
+  /**
+   * Tag name to use for SVGs.
+   *
+   * @default 'div'
+   */
+  tagName: string
+}
+
+export interface NuxtSvgTransformerModule extends ModuleOptions {
+  components: string[]
 }

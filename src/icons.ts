@@ -1,6 +1,8 @@
 import { createWriteStream, existsSync, mkdirSync, readFileSync, rmSync } from 'fs'
 import type { File } from './reader'
 import Reader from './reader'
+import Svg from './svg'
+import type { ModuleOptions } from './types'
 
 interface Paths {
   assets: string
@@ -13,12 +15,14 @@ interface Paths {
  */
 export class Icons {
   private paths: Paths
+  private options: ModuleOptions
   private files: File[] = []
   private types = 'export type IconType = '
   private components: string[] = []
 
-  private constructor(paths: Paths) {
+  private constructor(paths: Paths, options: ModuleOptions) {
     this.paths = paths
+    this.options = options
   }
 
   public getComponents(): string[] {
@@ -28,8 +32,16 @@ export class Icons {
   /**
    * Create a new instance of `Icons`.
    */
-  public static async make(paths: Paths): Promise<Icons> {
-    const icons = new Icons(paths)
+  public static async make(options: ModuleOptions): Promise<Icons> {
+    let root = process.cwd()
+    if (options.root)
+      root += `/${options.root}`
+    const paths: Paths = {
+      assets: `${root}/${options.assets}`,
+      cache: `${root}/.nuxt/icons`,
+      components: `${root}/.nuxt/icons/components.ts`,
+    }
+    const icons = new Icons(paths, options)
 
     icons.createPaths()
     icons.files = await icons.sync()
@@ -55,18 +67,12 @@ export class Icons {
     this.files.forEach((file) => {
       const stream = createWriteStream(`${this.paths.cache}/${file.filename}.ts`)
       stream.once('open', () => {
-        stream.write(`const ${file.camelCase} = '${this.prepareSvg(file.path)}'\n`)
+        const svg = Svg.make(this.options, file.path)
+        stream.write(`const ${file.camelCase} = '${svg.getContent()}'\n`)
         stream.write(`export default ${file.camelCase}\n`)
         stream.end()
       })
     })
-  }
-
-  private prepareSvg(path: string): string {
-    const content = readFileSync(path, 'utf8')
-    const svg = content.replace(/^ +/gm, '')
-
-    return svg.replace(/[\r\n]/gm, ' ')
   }
 
   /**

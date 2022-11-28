@@ -13,6 +13,11 @@ export default defineNuxtConfig({
     autoTitle: true,
     lazy: false,
     log: true,
+    clearClasses: false,
+    clearStyles: false,
+    sizeInherit: false,
+    // styleDefault: 'display: flex;',
+    classDefault: 'w-5 h-5',
   },
   postcss: {
     plugins: {
