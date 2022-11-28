@@ -6,6 +6,14 @@
 
 A **Nuxt 3** module to manage SVG as icons.
 
+## Why
+
+You can find some other SVG modules for Nuxt 3, `nuxt-svg-transformer` have a behavior similar to [gitFoxCode/nuxt-icons](https://github.com/gitFoxCode/nuxt-icons), but with some differences in current module: `svg` aren't directly load from original file but from cache files, `name` is typed to avoid errors, keep native SVG with `fill`/`width`/`height` and you have some options to manage your SVG. Try [gitFoxCode/nuxt-icons](https://github.com/gitFoxCode/nuxt-icons) to know if it's better for you.
+
+Another module [nuxt-modules/icon](https://github.com/nuxt-modules/icon) can manage SVG as icons, but the aim of this module is to refer to libraries or to support custom SVG as Vue component. If you want only use SVG from a library, try this module!
+
+`nuxt-svg-transformer` is a module useful if you want to manage your SVG as icons, without using a library, and without using a custom loader.
+
 ## Installation
 
 With `NPM`
