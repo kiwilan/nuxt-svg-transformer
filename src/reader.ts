@@ -4,6 +4,7 @@ import { readdir } from 'fs/promises'
 export interface File {
   name: string
   slug: string
+  camelCase: string
   path: string
 }
 
@@ -50,12 +51,20 @@ export default class Reader {
         filesList.push({
           name: fullName,
           slug: this.slugify(fullName),
+          camelCase: this.camalize(fullName),
           path: file,
         })
       }
     })
 
     return filesList
+  }
+
+  /**
+   * Camelcase a string.
+   */
+  private camalize(str: string): string {
+    return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
   }
 
   /**

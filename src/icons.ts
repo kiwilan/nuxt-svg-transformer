@@ -54,8 +54,8 @@ export class Icons {
     this.files.forEach((file) => {
       const stream = createWriteStream(`${this.paths.cache}/${file.slug}.ts`)
       stream.once('open', () => {
-        stream.write(`const ${file.slug} = '${this.prepareSvg(file.path)}'\n`)
-        stream.write(`export default ${file.slug}\n`)
+        stream.write(`const ${file.camelCase} = '${this.prepareSvg(file.path)}'\n`)
+        stream.write(`export default ${file.camelCase}\n`)
         stream.end()
       })
     })
