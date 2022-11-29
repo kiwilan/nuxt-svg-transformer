@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { onMounted, ref, useAttrs, watch } from 'vue'
 import type { NuxtSvgTransformerModule } from '../types'
-import type { IconType } from '@/.nuxt/icons/components'
-import { IconList } from '@/.nuxt/icons/components'
 // @ts-expect-error type error
-import { assets, autoTitle, classDefault, clearClasses, clearSize, clearStyles, componentName, components, fallback, lazy, log, reactive, root, sizeInherit, styleDefault, tagName } from '#svg-transformer-options'
+import * as options from '#svg-transformer-options'
+import type { IconType } from '~~/svg-transformer'
+import { IconList } from '~~/svg-transformer'
 
 interface Props {
   name: IconType
@@ -21,31 +21,13 @@ const props = withDefaults(defineProps<Props>(), {
   log: undefined,
 })
 
-const options: NuxtSvgTransformerModule = {
-  assets: assets as string,
-  componentName: componentName as string,
-  root: root as string,
-  lazy: lazy as boolean,
-  reactive: reactive as boolean,
-  autoTitle: autoTitle as boolean,
-  fallback: fallback as string | false,
-  log: log as boolean,
-  sizeInherit: sizeInherit as boolean,
-  classDefault: classDefault as string | undefined,
-  styleDefault: styleDefault as string | undefined,
-  clearClasses: clearClasses as boolean,
-  clearSize: clearSize as boolean,
-  clearStyles: clearStyles as boolean,
-  tagName: tagName as string,
-  components: components as string[],
-}
-
+const opts: NuxtSvgTransformerModule = options
 const config = {
-  lazy: props.lazy ?? options.lazy,
-  reactive: props.reactive ?? options.reactive,
-  autoTitle: options.autoTitle,
-  fallback: options.fallback,
-  log: props.log ?? options.log,
+  lazy: props.lazy ?? opts.lazy,
+  reactive: props.reactive ?? opts.reactive,
+  autoTitle: opts.autoTitle,
+  fallback: opts.fallback,
+  log: props.log ?? opts.log,
 }
 
 const svgTitle = ref()
@@ -71,8 +53,8 @@ const setSvg = async () => {
   else {
     if (config.log)
       console.warn(`[nuxt-svg-transformer] SVG "${props.name}" not found`)
-    if (typeof options.fallback === 'string')
-      svg.value = options.fallback
+    if (typeof opts.fallback === 'string')
+      svg.value = opts.fallback
   }
 }
 
@@ -97,7 +79,7 @@ if (config.reactive) {
 
 <template>
   <Suspense>
-    <component :is="tagName" v-bind="attrs" :title="svgTitle">
+    <component :is="opts.tagName" v-bind="attrs" :title="svgTitle">
       <span v-html="svg" />
     </component>
     <template #fallback>
