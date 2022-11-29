@@ -4,13 +4,25 @@ export interface ModuleOptions {
    *
    * @default 'assets/icons'
    */
-  assets: string
+  assetsDir: string
   /**
    * Global options to toggle auto-title attribute from SVG filename. If you set `title` on any `SvgIcon` component, it will override this option.
    *
    * @default true
    */
   autoTitle: boolean
+  /**
+   * The path to the directory where cached file are stored. If directory is not found, it will be created.
+   *
+   * @default 'assets/cache'
+   */
+  cacheDir: string
+  /**
+   * The name of the file where the types are stored, at the root of app.
+   *
+   * @default 'svg-transformer'
+   */
+  cacheFile: string
   /**
    * Add default classes to all SVGs.
    *
@@ -54,7 +66,7 @@ export interface ModuleOptions {
    */
   fallback: string | false
   /**
-   * Global option to toggle lazy icons.
+   * Global option to toggle lazy icons, if disabled, hot reloading can have some issues.
    *
    * @default true
    */
@@ -98,6 +110,18 @@ export interface ModuleOptions {
   tagName: string
 }
 
-export interface NuxtSvgTransformerModule extends ModuleOptions {
-  components: string[]
+export interface Paths {
+  assetsDir: string
+  cacheDir: string
+  appDir: string
+  cacheFile: string
+  gitignore: string
 }
+
+export interface NuxtSvgTransformerModule extends ModuleOptions {
+  paths: Paths
+  absolutePaths: Paths
+  relativePaths: Paths
+  config?: any
+}
+

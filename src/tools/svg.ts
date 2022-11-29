@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import type { ModuleOptions } from './types'
+import type { ModuleOptions } from '../types'
 
 type Attribute = 'style' | 'class' | 'width' | 'height'
 

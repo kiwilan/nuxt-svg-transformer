@@ -1,12 +1,15 @@
 import { fileURLToPath } from 'url'
 import { addComponent, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { name, version } from '../package.json'
-import { Icons } from './icons'
-import type { ModuleOptions } from './types'
+import { Icons } from './tools/icons'
+import { Utils } from './tools/utils'
+import type { ModuleOptions, NuxtSvgTransformerModule } from './types'
 
 const DEFAULTS: ModuleOptions = {
-  assets: 'assets/icons',
+  assetsDir: 'assets/icons',
   autoTitle: true,
+  cacheDir: 'assets/cache',
+  cacheFile: 'svg-transformer',
   componentName: 'SvgIcon',
   classDefault: undefined,
   clearClasses: false,
@@ -33,11 +36,48 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: DEFAULTS,
   async setup(options, nuxt) {
-    const icons = await Icons.make(options)
+    let root = process.cwd()
+    let relative
+    if (options.root) {
+      root += `/${options.root}/`
+      relative = `${options.root}/`
+    }
+
+    const assets = options.assetsDir
+    const cache = options.cacheDir
+
+    const opts: NuxtSvgTransformerModule = {
+      ...options,
+      paths: {
+        assetsDir: assets,
+        cacheDir: cache,
+        appDir: '',
+        cacheFile: 'svg-transformer.ts',
+        gitignore: '.gitignore',
+      },
+      absolutePaths: {
+        assetsDir: `${root}${assets}`,
+        cacheDir: `${root}${cache}`,
+        appDir: root,
+        cacheFile: `${root}svg-transformer.ts`,
+        gitignore: `${root}.gitignore`,
+      },
+      relativePaths: {
+        assetsDir: `${relative}${assets}`,
+        cacheDir: `${relative}${cache}`,
+        appDir: `${relative}`,
+        cacheFile: `${relative}svg-transformer.ts`,
+        gitignore: `${relative}.gitignore`,
+      },
+    }
+
+    await Icons.make(opts)
+    const utils = Utils.make(opts)
+    utils.ignoreFiles()
 
     nuxt.hook('builder:watch', async (event, path) => {
-      if (path.startsWith(options.assets))
-        await Icons.make(options)
+      if (path.startsWith(options.assetsDir))
+        await Icons.make(opts)
     })
 
     const { resolve } = createResolver(import.meta.url)
@@ -49,16 +89,11 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: resolve(runtimeDir, 'component.vue'),
     })
 
-    const list = {
-      ...options,
-      components: icons.getComponents(),
-    }
-
     nuxt.options.alias['#svg-transformer-options'] = addTemplate({
       filename: 'svg-transformer-options.mjs',
-      getContents: () => Object.entries(list).map(([key, value]) =>
-        `export const ${key} = ${JSON.stringify(value, null, 2)}
-      `).join('\n'),
+      getContents: () => Object.entries(opts)
+        .map(([key, value]) => `export const ${key} = ${JSON.stringify(value, null, 2)}`)
+        .join('\n'),
     }).dst
   },
 })

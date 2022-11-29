@@ -4,6 +4,7 @@ import { readdir } from 'fs/promises'
 export interface File {
   name: string
   filename: string
+  typed: string
   slug: string
   camelCase: string
   path: string
@@ -52,6 +53,7 @@ export default class Reader {
         filesList.push({
           name: fullName,
           filename: fullName.replace('/', '-'),
+          typed: fullName.replace(' ', '-'),
           slug: this.slugify(fullName),
           camelCase: this.camalize(fullName),
           path: file,
@@ -76,9 +78,9 @@ export default class Reader {
     return str
       .toLowerCase()
       .trim()
-      .replace(/[^\w\s-]/g, '')
+      .replace(/[^\w\s-]/g, '-')
       .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '')
+      .replace(/^-+|-+$/g, '-')
   }
 
   /**
