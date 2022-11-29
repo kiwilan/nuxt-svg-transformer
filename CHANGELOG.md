@@ -1,3 +1,8 @@
+## 0.0.3
+
+- Refactoring to fix production bug
+  - Cached files are stored into `cacheDir` with `cacheFile` file at the root of app (added to `.gitignore`)
+
 ## 0.0.25
 
 - Add `clearSize` option to remove native size attributes from SVGs

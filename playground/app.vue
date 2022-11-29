@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import type { IconType } from '@/.nuxt/icons/components'
+import type { IconType } from './svg-transformer'
 
 const like = ref<IconType>('heart')
 </script>
@@ -26,7 +26,6 @@ const like = ref<IconType>('heart')
     <SvgIcon name="setting" />
     <SvgIcon name="download/direct" />
     <SvgIcon name="server-logo/server-icon" />
-    <SvgIcon name="social/stackoverflow" />
 
     Nuxt module playground!
   </div>
