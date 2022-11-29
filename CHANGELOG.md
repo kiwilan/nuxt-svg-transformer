@@ -1,3 +1,7 @@
+## 0.0.31
+
+- Fix: relative paths
+
 ## 0.0.3
 
 - Refactoring to fix production bug

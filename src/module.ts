@@ -37,7 +37,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: DEFAULTS,
   async setup(options, nuxt) {
     let root = process.cwd()
-    let relative
+    let relative = ''
     if (options.root) {
       root += `/${options.root}/`
       relative = `${options.root}/`
@@ -49,18 +49,18 @@ export default defineNuxtModule<ModuleOptions>({
     const opts: NuxtSvgTransformerModule = {
       ...options,
       paths: {
-        assetsDir: assets,
-        cacheDir: cache,
+        assetsDir: `${assets}`,
+        cacheDir: `${cache}`,
         appDir: '',
         cacheFile: 'svg-transformer.ts',
         gitignore: '.gitignore',
       },
       absolutePaths: {
-        assetsDir: `${root}${assets}`,
-        cacheDir: `${root}${cache}`,
+        assetsDir: `${root}/${assets}`,
+        cacheDir: `${root}/${cache}`,
         appDir: root,
-        cacheFile: `${root}svg-transformer.ts`,
-        gitignore: `${root}.gitignore`,
+        cacheFile: `${root}/svg-transformer.ts`,
+        gitignore: `${root}/.gitignore`,
       },
       relativePaths: {
         assetsDir: `${relative}${assets}`,

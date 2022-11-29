@@ -96,8 +96,8 @@ export class Icons {
    * Create paths if not exists, delete cache to refresh SVG.
    */
   private createPaths(): void {
-    if (!existsSync(this.options.paths.assetsDir))
-      mkdirSync(this.options.paths.assetsDir, { recursive: true })
+    if (!existsSync(this.options.relativePaths.assetsDir))
+      mkdirSync(this.options.relativePaths.assetsDir, { recursive: true })
 
     if (existsSync(this.options.relativePaths.cacheDir))
       rmSync(this.options.relativePaths.cacheDir, { force: true, recursive: true })
