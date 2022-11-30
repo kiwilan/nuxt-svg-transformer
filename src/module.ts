@@ -8,8 +8,6 @@ import type { ModuleOptions, NuxtSvgTransformerModule } from './types'
 const DEFAULTS: ModuleOptions = {
   assetsDir: 'assets/icons',
   autoTitle: true,
-  cacheDir: 'assets/cache',
-  cacheFile: 'svg-transformer',
   componentName: 'SvgIcon',
   classDefault: undefined,
   clearClasses: false,
@@ -36,39 +34,26 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: DEFAULTS,
   async setup(options, nuxt) {
-    let root = process.cwd()
-    let relative = ''
-    if (options.root) {
-      root += `/${options.root}/`
-      relative = `${options.root}/`
-    }
+    const root = nuxt.options.rootDir
 
-    const assets = options.assetsDir
-    const cache = options.cacheDir
-
+    const assetsPath = `${root}/${options.assetsDir}`
+    const typeFile = 'svg-transformer.d.ts'
+    const indexFile = 'svg-transformer-list.ts'
+    const indexPath = `${nuxt.options.dir.assets}/${indexFile}`
     const opts: NuxtSvgTransformerModule = {
       ...options,
-      paths: {
-        assetsDir: `${assets}`,
-        cacheDir: `${cache}`,
-        appDir: '',
-        cacheFile: 'svg-transformer.ts',
-        gitignore: '.gitignore',
-      },
-      absolutePaths: {
-        assetsDir: `${root}/${assets}`,
-        cacheDir: `${root}/${cache}`,
-        appDir: root,
-        cacheFile: `${root}/svg-transformer.ts`,
-        gitignore: `${root}/.gitignore`,
-      },
-      relativePaths: {
-        assetsDir: `${relative}${assets}`,
-        cacheDir: `${relative}${cache}`,
-        appDir: `${relative}`,
-        cacheFile: `${relative}svg-transformer.ts`,
-        gitignore: `${relative}.gitignore`,
-      },
+      root,
+      assetsPath,
+      svgPath: `${assetsPath}/svg`,
+      cachePath: `${assetsPath}/cache`,
+      typePath: `${nuxt.options.buildDir}/${typeFile}`,
+      indexPath: `${root}/${indexPath}`,
+      typeFile: `${typeFile}`,
+      indexFile: `${indexFile}`,
+      gitignores: [
+        `${options.assetsDir}/cache`,
+        `${indexPath}`,
+      ],
     }
 
     await Icons.make(opts)
@@ -76,7 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
     utils.ignoreFiles()
 
     nuxt.hook('builder:watch', async (event, path) => {
-      if (path.startsWith(options.assetsDir))
+      if (path.startsWith(opts.svgPath))
         await Icons.make(opts)
     })
 

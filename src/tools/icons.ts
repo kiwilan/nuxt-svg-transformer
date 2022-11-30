@@ -1,4 +1,4 @@
-import { appendFile, createWriteStream, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
+import { createWriteStream, existsSync, mkdirSync } from 'fs'
 import type { NuxtSvgTransformerModule } from '../types'
 import type { File } from './reader'
 import Reader from './reader'
@@ -47,7 +47,7 @@ export class Icons {
    * Read all SVG recursively into `paths.assetsDir` and return a list of files.
    */
   private async sync(): Promise<File[]> {
-    const reader = await Reader.make(this.options.absolutePaths.assetsDir, 'svg')
+    const reader = await Reader.make(`${this.options.svgPath}`, 'svg')
     return reader.getFilesList()
   }
 
@@ -56,7 +56,7 @@ export class Icons {
    */
   private convertSvg(): void {
     this.files.forEach((file) => {
-      const stream = createWriteStream(`${this.options.relativePaths.cacheDir}/${file.slug}.ts`)
+      const stream = createWriteStream(`${this.options.cachePath}/${file.slug}.ts`)
       stream.once('open', () => {
         const svg = Svg.make(this.options, file.path)
         stream.write(`const ${file.camelCase} = '${svg.getContent()}'\n`)
@@ -75,18 +75,29 @@ export class Icons {
       types += `'${file.typed}' | `
     })
     types = types.slice(0, -3)
+    if (!types) {
+      // eslint-disable-next-line @typescript-eslint/quotes
+      types = "'no-svg'"
+    }
     this.types = types
 
-    const stream = createWriteStream(this.options.relativePaths.cacheFile)
-    stream.once('open', () => {
-      stream.write(`export type IconType = ${types}\n`)
-      stream.write('\n')
-      stream.write('export const IconList: Record<IconType,Promise<{default:string}>> = {\n')
+    const streamType = createWriteStream(`${this.options.typePath}`)
+    streamType.once('open', () => {
+      streamType.write(`export type IconType = ${types}\n`)
+      streamType.write('\n')
+      streamType.end()
+    })
+
+    const streamList = createWriteStream(`${this.options.indexPath}`)
+    streamList.once('open', () => {
+      const typeFile = this.options.typeFile.replace('.d.ts', '')
+      streamList.write(`import type { IconType } from '~~/.nuxt/${typeFile}'\n`)
+      streamList.write('export const IconList: Record<IconType,Promise<{default:string}>> = {\n')
       this.files.forEach((file) => {
-        stream.write(`  '${file.typed}': import('./${this.options.paths.cacheDir}/${file.slug}'),\n`)
+        streamList.write(`  '${file.typed}': import('../${this.options.assetsDir}/cache/${file.slug}'),\n`)
       })
-      stream.write('}\n')
-      stream.end()
+      streamList.write('}\n')
+      streamList.end()
     })
 
     return types
@@ -96,12 +107,17 @@ export class Icons {
    * Create paths if not exists, delete cache to refresh SVG.
    */
   private createPaths(): void {
-    if (!existsSync(this.options.relativePaths.assetsDir))
-      mkdirSync(this.options.relativePaths.assetsDir, { recursive: true })
+    const assets = `${this.options.root}/assets`
+    if (!existsSync(assets))
+      mkdirSync(assets, { recursive: true })
 
-    if (existsSync(this.options.relativePaths.cacheDir))
-      rmSync(this.options.relativePaths.cacheDir, { force: true, recursive: true })
+    if (!existsSync(this.options.assetsPath))
+      mkdirSync(this.options.assetsPath, { recursive: true })
 
-    mkdirSync(this.options.relativePaths.cacheDir, { recursive: true })
+    if (!existsSync(this.options.svgPath))
+      mkdirSync(this.options.svgPath, { recursive: true })
+
+    if (!existsSync(this.options.cachePath))
+      mkdirSync(this.options.cachePath, { recursive: true })
   }
 }

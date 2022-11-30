@@ -59,10 +59,8 @@ export default defineNuxtConfig({
 
 | **Option**      | **Type**            | **Default**       | **Description**                                                                                        |
 | --------------- | ------------------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
-| `assets`        | `string`            | `assets/icons`    | Path where original SVG stored.                                                                        |
+| `assetsDir`     | `string`            | `assets/icons`    | Path where original SVG stored.                                                                        |
 | `autoTitle`     | `boolean`           | `true`            | Each SVG will have a `title` based on SVG filename.                                                    |
-| `cacheDir`      | `string`            | `assets/cache`    | The path to the directory where cached file are stored. If directory is not found, it will be created. |
-| `cacheFile`     | `string`            | `svg-transformer` | The name of the file where the types are stored, at the root of app.                                   |
 | `classDefault`  | `?string`           | `undefined`       | Add default classes to all SVGs.                                                                       |
 | `clearClasses`  | `boolean`           | `false`           | Clear all classes from SVGs.                                                                           |
 | `clearSize`     | `boolean`           | `false`           | Clear `width` and `height` attributes from SVGs.                                                       |

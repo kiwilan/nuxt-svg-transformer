@@ -12,18 +12,6 @@ export interface ModuleOptions {
    */
   autoTitle: boolean
   /**
-   * The path to the directory where cached file are stored. If directory is not found, it will be created.
-   *
-   * @default 'assets/cache'
-   */
-  cacheDir: string
-  /**
-   * The name of the file where the types are stored, at the root of app.
-   *
-   * @default 'svg-transformer'
-   */
-  cacheFile: string
-  /**
    * Add default classes to all SVGs.
    *
    * @default undefined
@@ -119,9 +107,15 @@ export interface Paths {
 }
 
 export interface NuxtSvgTransformerModule extends ModuleOptions {
-  paths: Paths
-  absolutePaths: Paths
-  relativePaths: Paths
+  root: string
+  assetsPath: string
+  svgPath: string
+  cachePath: string
+  typePath: string
+  indexPath: string
+  typeFile: string
+  indexFile: string
+  gitignores: string[]
   config?: any
 }
 

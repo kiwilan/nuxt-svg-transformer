@@ -4,9 +4,7 @@ import type { NuxtSvgTransformerModule } from '../types'
 export class Utils {
   private constructor(
     private options: NuxtSvgTransformerModule,
-    private cacheFile = '',
   ) {
-    this.cacheFile = `${this.options.cacheFile}.ts`
   }
 
   public static make(options: NuxtSvgTransformerModule): Utils {
@@ -16,15 +14,13 @@ export class Utils {
   }
 
   public ignoreFiles() {
-    if (!existsSync(this.options.paths.gitignore))
-      writeFileSync(this.options.paths.gitignore, '')
+    const gitignorePath = `${this.options.root}/.gitignore`
+    if (!existsSync(gitignorePath))
+      writeFileSync(gitignorePath, '')
 
-    this.addToFile(this.options.relativePaths.gitignore, `\n${this.options.paths.cacheDir}\n`)
-
-    const cacheFile = this.options.paths.appDir
-      ? `${this.options.paths.appDir}/${this.cacheFile}`
-      : this.cacheFile
-    this.addToFile(this.options.relativePaths.gitignore, `\n${cacheFile}\n`)
+    this.options.gitignores.forEach((element) => {
+      this.addToFile(gitignorePath, `\n${element}\n`)
+    })
   }
 
   private addToFile(path: string, content: string): void {

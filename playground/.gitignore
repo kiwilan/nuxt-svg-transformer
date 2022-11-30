@@ -1,5 +1,6 @@
 node_modules
 
-svg-transformer.ts
 
-assets/cache
+assets/icons/cache
+
+assets/svg-transformer-list.ts
