@@ -124,7 +124,7 @@ In any Vue component.
 Create a `tgz`.
 
 ```bash
-rm -f ~/nuxt-svg-transforme-*.tgz && npm pack && mv nuxt-svg-transforme-*.tgz ~/
+rm -f ~/nuxt-svg-transformer-*.tgz && npm pack && mv nuxt-svg-transformer-*.tgz ~/
 ```
 
 Add it to your Nuxt app.
