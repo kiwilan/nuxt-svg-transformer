@@ -3,6 +3,7 @@ import { onMounted, ref, useAttrs, watch } from 'vue'
 import type { NuxtSvgTransformerModule } from '../types'
 // @ts-expect-error type error
 import * as options from '#svg-transformer-options'
+// @ts-expect-error type error
 import type { IconType } from '~~/.nuxt/svg-transformer'
 import { IconList } from '~~/assets/svg-transformer-list'
 
@@ -79,11 +80,6 @@ if (config.reactive) {
 
 <template>
   <Suspense>
-    <component :is="opts.tagName" v-bind="attrs" :title="svgTitle">
-      <span v-html="svg" />
-    </component>
-    <template #fallback>
-      <div>Loading...</div>
-    </template>
+    <span v-bind="attrs" :title="svgTitle" v-html="svg" />
   </Suspense>
 </template>

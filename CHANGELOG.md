@@ -1,3 +1,9 @@
+## 0.0.41
+
+- Remove `root` and `tagName` options, not relevant anymore.
+- `SvgIcon` fix `Suspense` error.
+- `fallback` set size to `inherit` by default.
+
 ## 0.0.4
 
 - Remove `cacheDir` and `cacheFile` options, merged into `assetsDir` options: now, cached files are generated in `assetsDir/cache` directory and SVG are stored in `assetsDir/svg` directory.

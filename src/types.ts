@@ -72,13 +72,6 @@ export interface ModuleOptions {
    */
   reactive: boolean
   /**
-   * The root of application. Use `false` if your nuxt app is in the root of your project.
-   *
-   * @default false
-   * @example 'playground'
-   */
-  root: string | false
-  /**
    * Global options to toggle size inheritance, inline `style` `height: inherit; width: inherit;`.
    *
    * @default false
@@ -90,12 +83,6 @@ export interface ModuleOptions {
    * @default undefined
    */
   styleDefault?: string
-  /**
-   * Tag name to use for SVGs.
-   *
-   * @default 'div'
-   */
-  tagName: string
 }
 
 export interface Paths {
