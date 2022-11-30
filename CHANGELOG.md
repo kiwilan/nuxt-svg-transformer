@@ -1,3 +1,11 @@
+## 0.0.4
+
+- Remove `cacheDir` and `cacheFile` options, merged into `assetsDir` options: now, cached files are generated in `assetsDir/cache` directory and SVG are stored in `assetsDir/svg` directory.
+- Index file will be stored into `assets` directory without option path because component have to refer to it (type has removed from this file).
+- New type file will be stored into `.nuxt` without option path because it's only type file.
+- All paths rebuilt with `nuxt.options`.
+- API more stable.
+
 ## 0.0.31
 
 - Fix: relative paths
