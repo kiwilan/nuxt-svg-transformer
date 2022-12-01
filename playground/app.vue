@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import type { IconType } from './assets/svg-transformer'
+import type { IconType } from '~~/.nuxt/svg-transformer'
 
 const like = ref<IconType>('heart')
 </script>

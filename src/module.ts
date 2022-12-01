@@ -59,7 +59,7 @@ export default defineNuxtModule<ModuleOptions>({
     utils.ignoreFiles()
 
     nuxt.hook('builder:watch', async (event, path) => {
-      if (path.startsWith(opts.svgPath))
+      if (path.startsWith(`${opts.assetsDir}/svg`))
         await Icons.make(opts)
     })
 

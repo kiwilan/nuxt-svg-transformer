@@ -1,4 +1,4 @@
-import { createWriteStream, existsSync, mkdirSync } from 'fs'
+import { createWriteStream, existsSync, mkdirSync, rmdirSync } from 'fs'
 import type { NuxtSvgTransformerModule } from '../types'
 import type { File } from './reader'
 import Reader from './reader'
@@ -117,7 +117,7 @@ export class Icons {
     if (!existsSync(this.options.svgPath))
       mkdirSync(this.options.svgPath, { recursive: true })
 
-    if (!existsSync(this.options.cachePath))
-      mkdirSync(this.options.cachePath, { recursive: true })
+    rmdirSync(this.options.cachePath, { recursive: true })
+    mkdirSync(this.options.cachePath, { recursive: true })
   }
 }

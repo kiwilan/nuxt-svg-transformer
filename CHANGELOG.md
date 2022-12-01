@@ -1,3 +1,7 @@
+## 0.0.42
+
+- Hot reload fixed
+
 ## 0.0.41
 
 - Remove `root` and `tagName` options, not relevant anymore.
