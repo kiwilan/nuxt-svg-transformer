@@ -1,6 +1,9 @@
 ## 0.0.42
 
 - Hot reload fixed
+  - blocked cause by path watch
+  - improved when delete a SVG file
+- improve docs
 
 ## 0.0.41
 

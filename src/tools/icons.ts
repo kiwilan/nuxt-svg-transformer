@@ -1,4 +1,4 @@
-import { createWriteStream, existsSync, mkdirSync, rmdirSync } from 'fs'
+import { createWriteStream, existsSync, mkdirSync, rm, rmdirSync } from 'fs'
 import type { NuxtSvgTransformerModule } from '../types'
 import type { File } from './reader'
 import Reader from './reader'
@@ -37,7 +37,7 @@ export class Icons {
 
     icons.createPaths()
     icons.files = await icons.sync()
-    icons.convertSvg()
+    await icons.convertSvg()
     icons.setTypes()
 
     return icons
@@ -54,7 +54,8 @@ export class Icons {
   /**
    * Convert SVG to TS files.
    */
-  private convertSvg(): void {
+  private async convertSvg(): Promise<void> {
+    mkdirSync(this.options.cachePath, { recursive: true })
     this.files.forEach((file) => {
       const stream = createWriteStream(`${this.options.cachePath}/${file.slug}.ts`)
       stream.once('open', () => {
@@ -63,6 +64,13 @@ export class Icons {
         stream.write(`export default ${file.camelCase}\n`)
         stream.end()
       })
+    })
+
+    const cacheFiles = await Reader.make(this.options.cachePath, 'ts')
+    const files = this.files.map(file => file.filename)
+    cacheFiles.getFilesList().forEach((file) => {
+      if (!files.includes(file.filename))
+        rm(`${this.options.cachePath}/${file.slug}.ts`, () => {})
     })
   }
 
@@ -117,7 +125,7 @@ export class Icons {
     if (!existsSync(this.options.svgPath))
       mkdirSync(this.options.svgPath, { recursive: true })
 
-    rmdirSync(this.options.cachePath, { recursive: true })
-    mkdirSync(this.options.cachePath, { recursive: true })
+    if (!existsSync(this.options.cachePath))
+      mkdirSync(this.options.cachePath, { recursive: true })
   }
 }

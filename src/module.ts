@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'url'
+import { existsSync, mkdirSync, rm, rmdirSync, writeFileSync } from 'fs'
 import { addComponent, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import { Icons } from './tools/icons'
@@ -52,6 +53,11 @@ export default defineNuxtModule<ModuleOptions>({
         `${options.assetsDir}/cache`,
         `${indexPath}`,
       ],
+    }
+
+    if (!existsSync(opts.typePath)) {
+      mkdirSync(nuxt.options.buildDir, { recursive: true })
+      writeFileSync(opts.typePath, '')
     }
 
     await Icons.make(opts)
