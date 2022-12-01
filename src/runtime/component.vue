@@ -26,15 +26,15 @@ const opts: NuxtSvgTransformerModule = options
 const config = {
   lazy: props.lazy ?? opts.lazy,
   reactive: props.reactive ?? opts.reactive,
-  autoTitle: opts.autoTitle,
+  title: opts.title,
   fallback: opts.fallback,
   log: props.log ?? opts.log,
 }
 
-const svgTitle = ref()
+const svgTitle = ref<string>()
 
 const setTitle = () => {
-  if (!config.autoTitle)
+  if (!config.title)
     svgTitle.value = props.name
 
   if (props.title)
@@ -43,6 +43,9 @@ const setTitle = () => {
 setTitle()
 
 const attrs = useAttrs()
+if (props.title || opts.title)
+  attrs.title = svgTitle.value
+
 const svg = ref<string>('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem;"></svg>')
 
 const setSvg = async () => {
@@ -80,6 +83,6 @@ if (config.reactive) {
 
 <template>
   <Suspense>
-    <span v-bind="attrs" :title="svgTitle" v-html="svg" />
+    <span v-bind="attrs" v-html="svg" />
   </Suspense>
 </template>

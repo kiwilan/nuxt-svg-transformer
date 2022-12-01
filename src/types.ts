@@ -6,12 +6,6 @@ export interface ModuleOptions {
    */
   assetsDir: string
   /**
-   * Global options to toggle auto-title attribute from SVG filename. If you set `title` on any `SvgIcon` component, it will override this option.
-   *
-   * @default true
-   */
-  autoTitle: boolean
-  /**
    * Add default classes to all SVGs.
    *
    * @default undefined
@@ -83,6 +77,12 @@ export interface ModuleOptions {
    * @default undefined
    */
   styleDefault?: string
+  /**
+   * Global options to toggle title attribute on icon based on SVG filename. If you set `title` on any `SvgIcon` component, it will override this option.
+   *
+   * @default false
+   */
+  title: boolean
 }
 
 export interface Paths {

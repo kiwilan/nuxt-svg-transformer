@@ -57,21 +57,21 @@ export default defineNuxtConfig({
 })
 ```
 
-| **Option**      | **Type**            | **Default**       | **Description**                                                                               |
-| --------------- | ------------------- | ----------------- | --------------------------------------------------------------------------------------------- |
-| `assetsDir`     | `string`            | `assets/icons`    | Path where original SVG stored.                                                               |
-| `autoTitle`     | `boolean`           | `true`            | Each SVG will have a `title` based on SVG filename.                                           |
-| `classDefault`  | `?string`           | `undefined`       | Add default classes to all SVGs.                                                              |
-| `clearClasses`  | `boolean`           | `false`           | Clear all classes from SVGs.                                                                  |
-| `clearSize`     | `boolean`           | `false`           | Clear `width` and `height` attributes from SVGs.                                              |
-| `clearStyles`   | `boolean`           | `false`           | Clear all native styles from SVGs.                                                            |
-| `componentName` | `string`            | `SvgIcon`         | Name of component.                                                                            |
-| `fallback`      | `string` or `false` | `<svg ...></svg>` | Fallback SVG if error, can be set to `false` to have no render.                               |
-| `lazy`          | `boolean`           | `true`            | Global option to toggle lazy icons, if disabled, hot reloading can have some issues.          |
-| `log`           | `boolean`           | `true`            | Log to alert if errors, can be override with prop.                                            |
-| `reactive`      | `boolean`           | `false`           | Enable reactivity to allow `name` prop to be switched, can be override with prop.             |
-| `sizeInherit`   | `boolean`           | `false`           | Global options to toggle size inheritance, inline `style` `height: inherit; width: inherit;`. |
-| `styleDefault`  | `?string`           | `undefined`       | Add default styles to all SVGs.                                                               |
+| **Option**      | **Type**            | **Default**       | **Description**                                                                                                                                      |
+| --------------- | ------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `assetsDir`     | `string`            | `assets/icons`    | Path where original SVG stored.                                                                                                                      |
+| `classDefault`  | `?string`           | `undefined`       | Add default classes to all SVGs.                                                                                                                     |
+| `clearClasses`  | `boolean`           | `false`           | Clear all classes from SVGs.                                                                                                                         |
+| `clearSize`     | `boolean`           | `false`           | Clear `width` and `height` attributes from SVGs.                                                                                                     |
+| `clearStyles`   | `boolean`           | `false`           | Clear all native styles from SVGs.                                                                                                                   |
+| `componentName` | `string`            | `SvgIcon`         | Name of component.                                                                                                                                   |
+| `fallback`      | `string` or `false` | `<svg ...></svg>` | Fallback SVG if error, can be set to `false` to have no render.                                                                                      |
+| `lazy`          | `boolean`           | `true`            | Global option to toggle lazy icons, if disabled, hot reloading can have some issues.                                                                 |
+| `log`           | `boolean`           | `true`            | Log to alert if errors, can be override with prop.                                                                                                   |
+| `reactive`      | `boolean`           | `false`           | Enable reactivity to allow `name` prop to be switched, can be override with prop.                                                                    |
+| `sizeInherit`   | `boolean`           | `false`           | Global options to toggle size inheritance, inline `style` `height: inherit; width: inherit;`.                                                        |
+| `styleDefault`  | `?string`           | `undefined`       | Add default styles to all SVGs.                                                                                                                      |
+| `title`         | `boolean`           | `false`           | Global options to toggle title attribute on icon based on SVG filename. If you set `title` on any `SvgIcon` component, it will override this option. |
 
 Put your SVG into `assets` path from config, default is `assets/icons`.
 

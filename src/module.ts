@@ -8,7 +8,6 @@ import type { ModuleOptions, NuxtSvgTransformerModule } from './types'
 
 const DEFAULTS: ModuleOptions = {
   assetsDir: 'assets/icons',
-  autoTitle: true,
   componentName: 'SvgIcon',
   classDefault: undefined,
   clearClasses: false,
@@ -20,6 +19,7 @@ const DEFAULTS: ModuleOptions = {
   reactive: false,
   sizeInherit: false,
   styleDefault: undefined,
+  title: false,
 }
 
 export default defineNuxtModule<ModuleOptions>({

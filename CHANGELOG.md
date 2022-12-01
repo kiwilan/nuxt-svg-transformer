@@ -1,3 +1,7 @@
+## 0.0.43
+
+- Option `autoTitle` is now `title` and the default is `false` to disable *title* generation.
+
 ## 0.0.42
 
 - Hot reload fixed

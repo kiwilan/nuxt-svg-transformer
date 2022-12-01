@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     assets: 'assets/icons',
     componentName: 'SvgIcon',
     reactive: false,
-    autoTitle: true,
+    title: true,
     lazy: true,
     log: true,
     clearClasses: false,
