@@ -27,6 +27,7 @@ jobs:
       - run: pnpm install
       - run: pnpm dev:prepare
       - run: pnpm prepack
+      - run: pnpm dev:build
       - name: Create Release
         id: release
         uses: halvardssm/github-action-tag-release@main

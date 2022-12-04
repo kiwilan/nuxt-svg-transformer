@@ -15,9 +15,9 @@ export default defineNuxtConfig({
     log: true,
     clearClasses: false,
     clearStyles: false,
-    sizeInherit: false,
+    sizeInherit: true,
     // styleDefault: 'display: flex;',
-    classDefault: 'w-5 h-5',
+    // classDefault: 'w-5 h-5',
   },
   postcss: {
     plugins: {

@@ -3,7 +3,6 @@ import { onMounted, ref, useAttrs, watch } from 'vue'
 import type { NuxtSvgTransformerModule } from '../types'
 // @ts-expect-error type error
 import * as options from '#svg-transformer-options'
-// @ts-expect-error type error
 import type { IconType } from '~~/.nuxt/svg-transformer'
 import { IconList } from '~~/assets/svg-transformer-list'
 
@@ -34,17 +33,15 @@ const config = {
 const svgTitle = ref<string>()
 
 const setTitle = () => {
-  if (!config.title)
+  if (!opts.title)
     svgTitle.value = props.name
 
-  if (props.title)
+  if (props.title !== undefined)
     svgTitle.value = props.title
 }
 setTitle()
 
 const attrs = useAttrs()
-if (props.title || opts.title)
-  attrs.title = svgTitle.value
 
 const svg = ref<string>('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem;"></svg>')
 
@@ -82,7 +79,5 @@ if (config.reactive) {
 </script>
 
 <template>
-  <Suspense>
-    <span v-bind="attrs" v-html="svg" />
-  </Suspense>
+  <span v-bind="attrs" :title="svgTitle" v-html="svg" />
 </template>
