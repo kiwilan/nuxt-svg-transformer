@@ -1,6 +1,6 @@
 {
   "name": "nuxt-svg-transformer",
-  "version": "0.0.44",
+  "version": "0.0.5",
   "description": "Transform SVG to inject dynamically into Vue component for Nuxt 3.",
   "repository": {
     "directory": "kiwilan/nuxt-svg-transformer",
@@ -19,6 +19,10 @@
       "name": "Ewilan Rivière",
       "email": "ewilan.riviere@gmail.com",
       "url": "https://github.com/ewilan-riviere"
+    },
+    {
+      "name": "FarhanShares",
+      "url": "https://github.com/FarhanShares"
     }
   ],
   "type": "module",

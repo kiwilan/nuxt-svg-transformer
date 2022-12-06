@@ -1,3 +1,8 @@
+## 0.0.5
+
+- issue #1: Add global option `inlineBlock` to add `display: inline-block;` to `SvgIcon`, default is `true`. Thanks to FarhanShares!
+- issue #2: Change `clearClasses`, `clearSize`, `clearStyles` with granular options: `all` | `parent` | `none` (default). You can clear all attributes, only parent attributes or none (`clearSize` is about `width` and `height` attributes). Thanks to FarhanShares!
+
 ## 0.0.44
 
 - `title` component option bug fix

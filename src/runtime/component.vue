@@ -42,6 +42,9 @@ const setTitle = () => {
 setTitle()
 
 const attrs = useAttrs()
+const style = ref()
+
+style.value = opts.inlineBlock ? 'display: inline-block;' : ''
 
 const svg = ref<string>('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem;"></svg>')
 
@@ -79,5 +82,5 @@ if (config.reactive) {
 </script>
 
 <template>
-  <span v-bind="attrs" :title="svgTitle" v-html="svg" />
+  <span v-bind="attrs" :style="style" :title="svgTitle" v-html="svg" />
 </template>

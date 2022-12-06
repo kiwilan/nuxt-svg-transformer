@@ -29,37 +29,86 @@ export default class Svg {
     let svg = content.replace(/^ +/gm, '')
     svg = svg.replace(/[\r\n]/gm, ' ')
 
+    const matches = svg.match(/(<[^>]+>|[^<]+)/g)
+    let filter: string[] = []
+    if (matches)
+      filter = matches.filter(n => n !== ' ')
+    else
+      filter = [svg]
+
     const currentStyle = this.extractAttribute(svg, 'style')
     const currentClass = this.extractAttribute(svg, 'class')
 
     let style = ''
     let classes = ''
 
-    svg = this.clearAttribute(svg, 'style')
-    svg = this.clearAttribute(svg, 'class')
-    if (this.options.clearSize) {
-      svg = this.clearAttribute(svg, 'width')
-      svg = this.clearAttribute(svg, 'height')
-    }
+    let svgRender = this.clearAttributeOption(filter, this.options.clearSize, 'width')
+    svgRender = this.clearAttributeOption(svgRender, this.options.clearSize, 'height')
+    svgRender = this.clearAttributeOption(svgRender, this.options.clearClasses, 'class')
+    svgRender = this.clearAttributeOption(svgRender, this.options.clearStyles, 'style')
 
+    svgRender = this.clearStyleAndClassParent(svgRender)
+
+    svg = svgRender.join('')
+
+    // Set `width` and `height` `inherit` attributes
     if (this.options.sizeInherit)
       style += 'height: inherit; width: inherit;'
 
+    // Set default global style from options
     if (this.options.styleDefault)
       style += `${this.options.styleDefault}`
 
+    // Set default global class from options
     if (this.options.classDefault)
       classes += `${this.options.classDefault} `
 
-    if (!this.options.clearStyles)
+    // If option `clearStyles` if `none` then set current style
+    if (this.options.clearStyles === 'none')
       style += `${currentStyle}`
 
-    if (!this.options.clearClasses)
+    // If option `clearClasses` if `none` then set current class
+    if (this.options.clearClasses === 'none')
       classes += `${currentClass} `
 
     svg = svg.replace('<svg', `<svg style="${style}" class="${classes}"`)
+    svg = svg.replace(' " ', '" ') // Remove space before `"`
+    svg = svg.replace(/\s{2,}/g, ' ') // Remove double spaces
+    svg = svg.replace('> <', '><') // Remove space between `>` and `<`
 
     return svg
+  }
+
+  private clearStyleAndClassParent(filter: string[]): string[] {
+    let parent = filter[0]
+
+    parent = this.clearAttribute(parent, 'class')
+    filter[0] = parent
+
+    parent = this.clearAttribute(parent, 'style')
+    filter[0] = parent
+
+    return filter
+  }
+
+  private clearAttributeOption(filter: string[], option: 'all' | 'parent' | 'none', attr: Attribute): string[] {
+    const svgRender: string[] = []
+
+    if (option === 'all') {
+      filter.forEach((element) => {
+        svgRender.push(this.clearAttribute(element, attr))
+      })
+      filter = svgRender
+    }
+
+    if (option === 'parent') {
+      let parent = filter[0]
+      parent = this.clearAttribute(parent, attr)
+
+      filter[0] = parent
+    }
+
+    return filter
   }
 
   private extractAttribute(svg: string, type: Attribute): string {
@@ -105,19 +154,19 @@ export default class Svg {
 
     switch (type) {
       case 'class':
-        regExp = /(class=\"[^\"]*\")/g
+        regExp = /( class=\"[^\"]*\")/g
         break
 
       case 'style':
-        regExp = /(style=\"[^\"]*\")/g
+        regExp = /( style=\"[^\"]*\")/g
         break
 
       case 'width':
-        regExp = /(width=\"[^\"]*\")/g
+        regExp = /( width=\"[^\"]*\")/g
         break
 
       case 'height':
-        regExp = /(height=\"[^\"]*\")/g
+        regExp = /( height=\"[^\"]*\")/g
         break
 
       default:
