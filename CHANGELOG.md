@@ -2,6 +2,7 @@
 
 - Improve docs
 - Add cover image
+- Add icon
 
 ## 0.0.5
 
