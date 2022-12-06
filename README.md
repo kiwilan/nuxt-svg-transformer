@@ -1,16 +1,20 @@
 # nuxt-svg-transformer
 
+[![nuxt-svg-transformer](./docs/public/cover.jpg "nuxt-svg-transformer")](./docs/public/cover.jpg)
+
 [![npm](https://img.shields.io/npm/v/nuxt-svg-transformer.svg?style=flat-square&color=CB3837&logo=npm&logoColor=ffffff&label=npm)](https://www.npmjs.com/package/nuxt-svg-transformer)
 [![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=3&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
 [![publish](https://img.shields.io/github/workflow/status/kiwilan/nuxt-svg-transformer/publish?style=flat-square&logo=github&logoColor=ffffff&label=publish)](https://github.com/kiwilan/nuxt-svg-transformer/actions)
 
 A **Nuxt 3** module to manage SVG as icons.
 
+- [▶️ &nbsp;Play online](https://stackblitz.com/edit/nuxt-starter-vvr4qn)
+
 ## Why
 
-Main Nuxt 3 module to manage icons is [nuxt-modules/icon](https://github.com/nuxt-modules/icon), but the aim of this module is to refer to libraries or to support custom SVG as Vue component. If you want only use SVG from a library, try this module!
+The main module of Nuxt 3 to manage icons is [nuxt-modules/icon](https://github.com/nuxt-modules/icon), with this module you will be able to use directly SVGs from different libraries without importing, you can also registering Vue components to have custom SVGs. If you want to use SVG from library [nuxt-modules/icon](https://github.com/nuxt-modules/icon) can be very interesting for you!
 
-Module [gitFoxCode/nuxt-icons](https://github.com/gitFoxCode/nuxt-icons) have a similar behavior of this module, but it will import directly SVG into your app without manipulate them. If you just want to import SVG, try this module!
+Module [gitFoxCode/nuxt-icons](https://github.com/gitFoxCode/nuxt-icons) have a similar behavior of `nuxt-svg-transformer` module, the main difference is that [gitFoxCode/nuxt-icons](https://github.com/gitFoxCode/nuxt-icons) directly imports SVGs. If you just want to import SVG, try this module!
 
 With `nuxt-svg-transformer`, `svg` aren't directly load from original file but from cache files, `name` is typed to avoid errors, keep native SVG with `fill`/`width`/`height` and you have some options to manage your SVG. It's useful if you want to manage your SVG as icons, without using a library, and without using a custom loader.
 
@@ -61,9 +65,9 @@ export default defineNuxtConfig({
 | --------------- | --------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `assetsDir`     | `string`              | `assets/icons`    | Path where original SVG stored.                                                                                                                      |
 | `classDefault`  | `?string`             | `undefined`       | Add default classes to all SVGs.                                                                                                                     |
-| `clearClasses`  | `all | parent | none` | `none`            | Clear all classes from SVGs (can be just all, just parent or none).                                                                                  |
-| `clearSize`     | `all | parent | none` | `none`            | Clear `width` and `height` attributes from SVGs (can be just all, just parent or none).                                                              |
-| `clearStyles`   | `all | parent | none` | `none`            | Clear all native styles from SVGs (can be just all, just parent or none).                                                                            |
+| `clearClasses`  | `all`, `parent`, `none` | `none`            | Clear all classes from SVGs (can be just all, just parent or none).                                                                                  |
+| `clearSize`     | `all`, `parent`, `none` | `none`            | Clear `width` and `height` attributes from SVGs (can be just all, just parent or none).                                                              |
+| `clearStyles`   | `all`, `parent`, `none` | `none`            | Clear all native styles from SVGs (can be just all, just parent or none).                                                                            |
 | `componentName` | `string`              | `SvgIcon`         | Name of component.                                                                                                                                   |
 | `fallback`      | `string` or `false`   | `<svg ...></svg>` | Fallback SVG if error, can be set to `false` to have no render.                                                                                      |
 | `inlineBlock`   | `boolean`             | `true`            | Add `display: inline-block` to component.                                                                                                            |

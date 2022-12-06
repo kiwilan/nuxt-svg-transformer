@@ -1,3 +1,8 @@
+## 0.0.51
+
+- Improve docs
+- Add cover image
+
 ## 0.0.5
 
 - issue #1: Add global option `inlineBlock` to add `display: inline-block;` to `SvgIcon`, default is `true`. Thanks to FarhanShares!
