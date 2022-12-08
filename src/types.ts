@@ -16,7 +16,7 @@ export interface ModuleOptions {
    *
    * @default 'none'
    */
-  clearClasses: 'all' | 'parent' | 'none'
+  clearClass: 'all' | 'parent' | 'none'
   /**
    * Clear native `width` and `height` attributes from SVGs (can be just all, just parent or none).
    *
@@ -28,7 +28,7 @@ export interface ModuleOptions {
    *
    * @default 'none'
    */
-  clearStyles: 'all' | 'parent' | 'none'
+  clearStyle: 'all' | 'parent' | 'none'
   /**
    * Name of the component to use in your application
    *

@@ -1,3 +1,7 @@
+## 0.0.6
+
+- issue #2: update options `clearClasses`, `clearSize` and `clearStyle` to `clearClass`, `clearSize` and `clearStyle` (singular)
+
 ## 0.0.51
 
 - Improve docs
