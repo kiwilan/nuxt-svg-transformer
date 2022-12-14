@@ -6,7 +6,7 @@
 [![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=3&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
 [![publish](https://img.shields.io/github/workflow/status/kiwilan/nuxt-svg-transformer/publish?style=flat-square&logo=github&logoColor=ffffff&label=publish)](https://github.com/kiwilan/nuxt-svg-transformer/actions)
 
-A **Nuxt 3** module to manage SVG as icons.
+A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
 - [▶️ &nbsp;Play online](https://stackblitz.com/edit/nuxt-starter-vvr4qn)
 
