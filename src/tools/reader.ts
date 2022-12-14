@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve, sep } from 'path'
 import { readdir } from 'fs/promises'
 
 export interface File {
@@ -44,11 +44,18 @@ export default class Reader {
     this.files.forEach((file) => {
       const extension = file.split('.').pop()
       if (extension === this.extension) {
-        let current = file.replace(this.directory, '')
+        let directory = this.directory
+        if (this.isWindows())
+          directory = directory.replaceAll('/', '\\')
+
+        let current = file.replace(directory, '')
         current = current.substring(1)
 
-        let fullName = current.replace('/', '-')
+        let fullName = current.replace('/', '-') // remove extension
         fullName = current.replace(`.${this.extension}`, '')
+
+        if (this.isWindows())
+          fullName = fullName.replaceAll('\\', '/')
 
         filesList.push({
           name: fullName,
@@ -62,6 +69,10 @@ export default class Reader {
     })
 
     return filesList
+  }
+
+  private isWindows(): boolean {
+    return process.platform === 'win32'
   }
 
   /**

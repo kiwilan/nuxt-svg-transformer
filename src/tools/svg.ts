@@ -44,8 +44,8 @@ export default class Svg {
 
     let svgRender = this.clearAttributeOption(filter, this.options.clearSize, 'width')
     svgRender = this.clearAttributeOption(svgRender, this.options.clearSize, 'height')
-    svgRender = this.clearAttributeOption(svgRender, this.options.clearClasses, 'class')
-    svgRender = this.clearAttributeOption(svgRender, this.options.clearStyles, 'style')
+    svgRender = this.clearAttributeOption(svgRender, this.options.clearClass, 'class')
+    svgRender = this.clearAttributeOption(svgRender, this.options.clearStyle, 'style')
 
     svgRender = this.clearStyleAndClassParent(svgRender)
 
@@ -64,11 +64,11 @@ export default class Svg {
       classes += `${this.options.classDefault} `
 
     // If option `clearStyles` if `none` then set current style
-    if (this.options.clearStyles === 'none')
+    if (this.options.clearStyle === 'none')
       style += `${currentStyle}`
 
     // If option `clearClasses` if `none` then set current class
-    if (this.options.clearClasses === 'none')
+    if (this.options.clearClass === 'none')
       classes += `${currentClass} `
 
     svg = svg.replace('<svg', `<svg style="${style}" class="${classes}"`)
