@@ -28,19 +28,19 @@ jobs:
       - run: pnpm dev:prepare
       - run: pnpm prepack
       - run: pnpm dev:build
-      - name: Create Release
-        id: release
-        uses: halvardssm/github-action-tag-release@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: ./package.json # optional, will use ./package.json by default
-      - run: |
-          echo 'Release created: ${{steps.version.outputs.release_created}}' # 'true' or 'false'
-          echo 'Release exists: ${{steps.version.outputs.release_exists}}' # 'true' or 'false'
-          echo 'Release tag: ${{steps.version.outputs.release_tag}}' # The tag from package.json
-      - if: ${{steps.release.outputs.release_exists == 'true'}}
-        run: echo "Release already exists"
-      - name: Publish package on NPM 📦
-        run: npm publish --scope=kiwilan --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      # - name: Create Release
+      #   id: release
+      #   uses: halvardssm/github-action-tag-release@main
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     path: ./package.json # optional, will use ./package.json by default
+      # - run: |
+      #     echo 'Release created: ${{steps.version.outputs.release_created}}' # 'true' or 'false'
+      #     echo 'Release exists: ${{steps.version.outputs.release_exists}}' # 'true' or 'false'
+      #     echo 'Release tag: ${{steps.version.outputs.release_tag}}' # The tag from package.json
+      # - if: ${{steps.release.outputs.release_exists == 'true'}}
+      #   run: echo "Release already exists"
+      # - name: Publish package on NPM 📦
+      #   run: npm publish --scope=kiwilan --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

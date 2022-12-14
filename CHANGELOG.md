@@ -1,3 +1,7 @@
+## 0.0.7
+
+- issue #3: add Windows support for SVG path with same API as Unix.
+
 ## 0.0.6
 
 - issue #2: update options `clearClasses`, `clearSize` and `clearStyle` to `clearClass`, `clearSize` and `clearStyle` (singular)
