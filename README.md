@@ -26,6 +26,12 @@ With `NPM`
 npm install nuxt-svg-transformer -D
 ```
 
+Or `yarn`
+
+```bash
+yarn add nuxt-svg-transformer -D
+```
+
 Or `pnpm`
 
 ```bash
