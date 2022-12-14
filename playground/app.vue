@@ -27,8 +27,6 @@ const like = ref<IconType>('heart')
     <SvgIcon name="download/direct" class="w-10 h-10" />
     <SvgIcon name="server-logo/server-icon" class="blue" />
     <SvgIcon name="github" class="w-10 h-10" />
-
-    Nuxt module playground!
   </div>
 </template>
 

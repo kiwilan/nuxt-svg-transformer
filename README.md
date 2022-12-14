@@ -48,6 +48,8 @@ pnpm add nuxt-svg-transformer -D
 - 🎨 Options to add or clear `style` and `class` global attributes
 - 🦾 SVG typed, validate by `name` prop (`typescript` required)
 
+![vscode](./docs/public/vscode-type.webp)
+
 ## Demo
 
 Available on [StackBlitz](https://stackblitz.com/edit/nuxt-starter-vvr4qn).
@@ -108,6 +110,8 @@ In any Vue component, you can use `svg-icon` component with `name` prop. The com
   </div>
 </template>
 ```
+
+![vscode](./docs/public/vscode-demo.webp)
 
 ## `SvgIcon` Props
 
