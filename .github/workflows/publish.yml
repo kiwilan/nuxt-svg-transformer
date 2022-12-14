@@ -12,18 +12,18 @@ jobs:
     steps:
       - name: 📚 checkout
         uses: actions/checkout@v3
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.8.0
-          run_install: |
-            - recursive: true
       - name: 🟢 node
         uses: actions/setup-node@v3
         with:
           node-version: 16.17
           registry-url: https://registry.npmjs.org/
           cache: pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.8.0
+          run_install: |
+            - recursive: true
       - run: pnpm install
       - run: pnpm dev:prepare
       - run: pnpm prepack
