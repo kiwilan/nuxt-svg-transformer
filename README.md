@@ -3,7 +3,7 @@
 [![nuxt-svg-transformer](./docs/public/cover.jpg "nuxt-svg-transformer")](./docs/public/cover.jpg)
 
 [![npm](https://img.shields.io/npm/v/nuxt-svg-transformer.svg?style=flat-square&color=CB3837&logo=npm&logoColor=ffffff&label=npm)](https://www.npmjs.com/package/nuxt-svg-transformer)
-[![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=3&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
+[![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=v3&color=28cf8d&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
 
 ![publish](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/publish.yml/badge.svg)
 
