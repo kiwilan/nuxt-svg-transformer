@@ -120,6 +120,10 @@ In any Vue component, you can use `svg-icon` component with `name` prop. The com
 | `title`    | `string`   | `false`      | `config`    | Set `title` attribute, default `title` will be SVG name if `autoTitle` is enable in config. |
 | `reactive` | `boolean`  | `false`      | `config`    | Allow reactivity `name` from `ref()`, default from config.                                  |
 
+## More typescript in your app?
+
+Try [nuxt-typed-link](https://github.com/kiwilan/nuxt-typed-link) to get typed link into your app.
+
 ## 💻 Development
 
 - Clone repository
@@ -148,3 +152,5 @@ Add it to your Nuxt app.
 ## License
 
 [MIT](./LICENSE)
+
+<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="100rem" width="100%" />
