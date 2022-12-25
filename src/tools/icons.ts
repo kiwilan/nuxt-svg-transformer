@@ -100,7 +100,7 @@ export class Icons {
     streamList.once('open', () => {
       const typeFile = this.options.typeFile.replace('.d.ts', '')
       streamList.write(`import type { IconType } from '~~/.nuxt/${typeFile}'\n`)
-      streamList.write('export const IconList: Record<IconType,Promise<{default:string}>> = {\n')
+      streamList.write('export const IconList: Record<IconType, Promise<{ default: string }>> = {\n')
       this.files.forEach((file) => {
         streamList.write(`  '${file.typed}': import('../${this.options.assetsDir}/cache/${file.slug}'),\n`)
       })
