@@ -34,7 +34,7 @@
     {
       "label": "pack-local",
       "type": "shell",
-      "command": "rm -f ~/nuxt-svg-transformer-*.tgz || true && npm pack && mv nuxt-svg-transformer-*.tgz ~/",
+      "command": "pnpm prepack && rm -f ~/nuxt-svg-transformer-*.tgz || true && npm pack && mv nuxt-svg-transformer-*.tgz ~/",
       "problemMatcher": [],
       "presentation": {
         "reveal": "never",
