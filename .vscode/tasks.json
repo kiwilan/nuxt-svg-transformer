@@ -34,17 +34,7 @@
     {
       "label": "pre-deploy",
       "type": "shell",
-      "command": "git checkout main && git merge develop",
-      "problemMatcher": [],
-      "presentation": {
-        "revealProblems": "onProblem",
-        "close": true
-      }
-    },
-    {
-      "label": "post-deploy",
-      "type": "shell",
-      "command": "git push main && git checkout develop",
+      "command": "git checkout main && git merge develop && git push && git checkout develop",
       "problemMatcher": [],
       "presentation": {
         "revealProblems": "onProblem",
