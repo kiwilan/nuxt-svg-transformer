@@ -7,7 +7,7 @@
 
 ![publish](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/publish.yml/badge.svg)
 
-A **Nuxt 3** module to manage SVG as icons.
+A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
 - [▶️ &nbsp;Play online](https://stackblitz.com/edit/nuxt-starter-vvr4qn)
 
@@ -48,6 +48,8 @@ pnpm add nuxt-svg-transformer -D
 - 📦 No import needed, SVG directly injected
 - 🎨 Options to add or clear `style` and `class` global attributes
 - 🦾 SVG typed, validate by `name` prop (`typescript` required)
+
+![vscode](./docs/public/vscode-type.webp)
 
 ## Demo
 
@@ -109,6 +111,8 @@ In any Vue component, you can use `svg-icon` component with `name` prop. The com
   </div>
 </template>
 ```
+
+![vscode](./docs/public/vscode-demo.webp)
 
 ## `SvgIcon` Props
 

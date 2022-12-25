@@ -1,3 +1,7 @@
+### 0.0.8
+
+- `title` option bug fix.
+
 ## 0.0.7
 
 - issue #3: add Windows support for SVG path with same API as Unix.
