@@ -4,12 +4,11 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "PNPM install",
+      "label": "install",
       "type": "shell",
       "command": "pnpm i",
       "problemMatcher": [],
       "presentation": {
-        // "reveal": "silent",
         "revealProblems": "onProblem",
         "close": true
       }
@@ -26,6 +25,16 @@
     {
       "type": "npm",
       "script": "dev",
+      "problemMatcher": [],
+      "presentation": {
+        "revealProblems": "onProblem",
+        "close": true
+      }
+    },
+    {
+      "label": "pre-deploy",
+      "type": "shell",
+      "command": "git checkout main && git merge develop && git push main && git checkout develop",
       "problemMatcher": [],
       "presentation": {
         "revealProblems": "onProblem",
