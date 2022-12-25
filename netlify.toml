@@ -3,4 +3,4 @@
 [build]
   base    = ""
   command = "cd docs && pnpm i && pnpm generate"
-  publish = "docs/.output/public"
+  publish = "docs/dist"
