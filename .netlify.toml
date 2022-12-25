@@ -3,5 +3,5 @@
 [build]
   base    = "docs"
   command = "pnpm generate"
-  publish = "dist"
+  publish = ".output"
   ignore  = "git diff --quiet HEAD^ HEAD . ../package.json"

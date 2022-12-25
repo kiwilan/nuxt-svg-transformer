@@ -3,7 +3,8 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   css: ['~/assets/css/app.css'],
   modules: [
-    'nuxt-svg-transformer',
+    // 'nuxt-svg-transformer',
+    '../src/module',
   ],
   svgTransformer: {
     root: 'playground',
