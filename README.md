@@ -3,8 +3,9 @@
 [![nuxt-svg-transformer](./docs/public/cover.jpg "nuxt-svg-transformer")](./docs/public/cover.jpg)
 
 [![npm](https://img.shields.io/npm/v/nuxt-svg-transformer.svg?style=flat-square&color=CB3837&logo=npm&logoColor=ffffff&label=npm)](https://www.npmjs.com/package/nuxt-svg-transformer)
-[![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=3&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
-[![publish](https://img.shields.io/github/workflow/status/kiwilan/nuxt-svg-transformer/publish?style=flat-square&logo=github&logoColor=ffffff&label=publish)](https://github.com/kiwilan/nuxt-svg-transformer/actions)
+[![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=v3&color=28cf8d&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
+
+![publish](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/publish.yml/badge.svg)
 
 A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
@@ -123,6 +124,10 @@ In any Vue component, you can use `svg-icon` component with `name` prop. The com
 | `title`    | `string`   | `false`      | `config`    | Set `title` attribute, default `title` will be SVG name if `autoTitle` is enable in config. |
 | `reactive` | `boolean`  | `false`      | `config`    | Allow reactivity `name` from `ref()`, default from config.                                  |
 
+## More typescript in your app?
+
+Try [nuxt-typed-link](https://github.com/kiwilan/nuxt-typed-link) to get typed link into your app.
+
 ## 💻 Development
 
 - Clone repository
@@ -151,3 +156,5 @@ Add it to your Nuxt app.
 ## License
 
 [MIT](./LICENSE)
+
+[<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="100rem" width="100%" />](https://github.com/kiwilan)
