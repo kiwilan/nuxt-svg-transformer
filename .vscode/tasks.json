@@ -14,6 +14,16 @@
       }
     },
     {
+      "label": "update",
+      "type": "shell",
+      "command": "pnpm update --latest",
+      "problemMatcher": [],
+      "presentation": {
+        "revealProblems": "onProblem",
+        "close": true
+      }
+    },
+    {
       "type": "npm",
       "script": "prepack",
       "problemMatcher": [],

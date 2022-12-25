@@ -157,4 +157,4 @@ Add it to your Nuxt app.
 
 [MIT](./LICENSE)
 
-[<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="125rem" width="100%" />](https://github.com/kiwilan)
+[<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="120rem" width="100%" />](https://github.com/kiwilan)
