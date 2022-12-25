@@ -1,4 +1,4 @@
-name: tests
+name: ci
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    name: tests
+    name: ci
     runs-on: ubuntu-latest
     steps:
       - name: 📚 checkout
