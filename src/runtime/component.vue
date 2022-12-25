@@ -3,7 +3,9 @@ import { onMounted, ref, useAttrs, watch } from 'vue'
 import type { NuxtSvgTransformerModule } from '../types'
 // @ts-expect-error type error
 import * as options from '#svg-transformer-options'
+// @ts-expect-error type error
 import type { IconType } from '~~/.nuxt/svg-transformer'
+// @ts-expect-error type error
 import { IconList } from '~~/assets/svg-transformer-list'
 
 interface Props {

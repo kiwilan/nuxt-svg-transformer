@@ -32,6 +32,17 @@
       }
     },
     {
+      "label": "pack-local",
+      "type": "shell",
+      "command": "pnpm prepack && rm -f ~/nuxt-svg-transformer-*.tgz || true && npm pack && mv nuxt-svg-transformer-*.tgz ~/",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "revealProblems": "never",
+        "close": true
+      }
+    },
+    {
       "label": "pre-deploy",
       "type": "shell",
       "command": "git checkout main && git merge develop && git push && git checkout develop",

@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/nuxt-svg-transformer.svg?style=flat-square&color=CB3837&logo=npm&logoColor=ffffff&label=npm)](https://www.npmjs.com/package/nuxt-svg-transformer)
 [![nuxt](https://img.shields.io/static/v1?label=Nuxt&message=v3&color=28cf8d&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxt.com/)
 
-![publish](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/publish.yml/badge.svg)
+![tests](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/tests.yml/badge.svg)
 
 A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
@@ -148,7 +148,7 @@ Add it to your Nuxt app.
 ```json
 {
   "devDependencies": {
-    "nuxt-svg-transformer": "file:~/nuxt-svg-transformer-0.0.41.tgz"
+    "nuxt-svg-transformer": "file:~/nuxt-svg-transformer-0.0.8.tgz"
   }
 }
 ```
@@ -157,4 +157,4 @@ Add it to your Nuxt app.
 
 [MIT](./LICENSE)
 
-[<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="100rem" width="100%" />](https://github.com/kiwilan)
+[<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="125rem" width="100%" />](https://github.com/kiwilan)

@@ -111,4 +111,3 @@ export interface NuxtSvgTransformerModule extends ModuleOptions {
   gitignores: string[]
   config?: any
 }
-

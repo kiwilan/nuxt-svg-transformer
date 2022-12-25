@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url'
 import { existsSync, mkdirSync, rm, rmdirSync, writeFileSync } from 'fs'
-import { addComponent, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addComponent, addTemplate, createResolver, defineNuxtModule, extendViteConfig } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import { Icons } from './tools/icons'
 import { Utils } from './tools/utils'
@@ -85,5 +85,12 @@ export default defineNuxtModule<ModuleOptions>({
         .map(([key, value]) => `export const ${key} = ${JSON.stringify(value, null, 2)}`)
         .join('\n'),
     }).dst
+
+    extendViteConfig((config) => {
+      config.server = config.server || {}
+      config.server.fs = config.server.fs || {}
+      config.server.fs.allow = config.server.fs.allow || []
+      config.server.fs.allow.push('..')
+    })
   },
 })
