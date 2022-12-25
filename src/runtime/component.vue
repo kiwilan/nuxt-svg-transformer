@@ -33,7 +33,7 @@ const config = {
 const svgTitle = ref<string>()
 
 const setTitle = () => {
-  if (!opts.title)
+  if (opts.title)
     svgTitle.value = props.name
 
   if (props.title !== undefined)
