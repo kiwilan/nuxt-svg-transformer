@@ -24,7 +24,7 @@ With `nuxt-svg-transformer`, `svg` aren't directly load from original file but f
 With `NPM`
 
 ```bash
-npm install nuxt-svg-transformer -D
+npm install nuxt-svg-transformer --save-dev
 ```
 
 Or `yarn`
