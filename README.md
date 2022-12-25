@@ -8,7 +8,7 @@
 ![ci](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/ci.yml/badge.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bfdc4eb4-5a04-42ef-8fc8-f57a38317746/deploy-status)](https://app.netlify.com/sites/frabjous-sherbet-a6e961/deploys)
 
-# SVG transformer
+# Nuxt SVG transformer
 
 A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
