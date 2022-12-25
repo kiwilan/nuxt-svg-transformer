@@ -44,8 +44,9 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "lint": "eslint --ext .ts --ext .vue .",
-    "docs:build": "cd docs && pnpm i && pnpm generate",
     "docs:dev": "cd docs && pnpm i && pnpm dev",
+    "docs:build": "cd docs && pnpm i && pnpm generate",
+    "docs:preview": "cd docs && pnpm preview",
     "release": "pnpm test && standard-version && git push --follow-tags && npm publish",
     "test": "pnpm lint"
   },
