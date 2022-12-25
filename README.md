@@ -26,16 +26,13 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 - 🎨 Options to add or clear `style` and `class` global attributes
 - 🦾 SVG typed, validate by `name` prop (`typescript` required)
 
+## Usage
+
+See [documentation](https://nuxt-svg-transformer.netlify.app/get-started).
+
 ## More typescript in your app?
 
 Try [nuxt-typed-link](https://github.com/kiwilan/nuxt-typed-link) to get typed link into your app.
-
-## 💻 Development
-
-- Clone repository
-- Install dependencies using `pnpm i`
-- Prepare using `pnpm dev:prepare`
-- Try playground using `pnpm dev`
 
 ## License
 
