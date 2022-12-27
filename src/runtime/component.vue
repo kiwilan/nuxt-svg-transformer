@@ -14,7 +14,7 @@ interface Props {
   lazy?: boolean
   reactive?: boolean
   log?: boolean
-  display?: Display
+  display?: Display | false
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -50,6 +50,9 @@ const style = ref()
 
 if (!props.display && opts.display)
   style.value = `display: ${opts.display};`
+
+if (props.display)
+  style.value = `display: ${props.display};`
 
 const svg = ref<string>('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem;"></svg>')
 
