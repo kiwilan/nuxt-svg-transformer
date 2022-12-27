@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref, useAttrs, watch } from 'vue'
-import type { NuxtSvgTransformerModule } from '../types'
+import type { Display, NuxtSvgTransformerModule } from '../types'
 // @ts-expect-error type error
 import * as options from '#svg-transformer-options'
 // @ts-expect-error type error
@@ -14,6 +14,7 @@ interface Props {
   lazy?: boolean
   reactive?: boolean
   log?: boolean
+  display?: Display
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,6 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   lazy: undefined,
   reactive: undefined,
   log: undefined,
+  display: undefined,
 })
 
 const opts: NuxtSvgTransformerModule = options
@@ -46,7 +48,8 @@ setTitle()
 const attrs = useAttrs()
 const style = ref()
 
-style.value = opts.inlineBlock ? 'display: inline-block;' : ''
+if (!props.display && opts.display)
+  style.value = `display: ${opts.display};`
 
 const svg = ref<string>('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem;"></svg>')
 
