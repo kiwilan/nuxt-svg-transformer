@@ -48,7 +48,7 @@ setTitle()
 const attrs = useAttrs()
 const style = ref()
 
-if (!props.display && opts.display)
+if (props.display === undefined && opts.display)
   style.value = `display: ${opts.display};`
 
 if (props.display)
@@ -81,7 +81,7 @@ else {
 
 if (config.reactive) {
   watch(
-    () => props.name,
+    () => props.name || props.title || props.lazy || props.reactive || props.display,
     async () => {
       await setSvg()
     },
