@@ -1,3 +1,10 @@
+## 0.1.1
+
+Config option `inlineBlock` to `display`, add `display` prop to component to override.
+
+* Config option `inlineBlock` to `display`, add `display` prop to component to override (339ca5b)
+* 0.1.0 changelog (d703457)
+
 ## 0.1.0
 
 Export ModuleOptions fixed.
