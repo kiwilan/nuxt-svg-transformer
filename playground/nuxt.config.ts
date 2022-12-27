@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   svgTransformer: {
     assetsDir: 'assets/icons',
     componentName: 'SvgIcon',
+    display: 'inline-block',
     reactive: false,
     title: false,
     lazy: true,

@@ -20,3 +20,5 @@ export interface NuxtSvgTransformerModule extends ModuleOptions {
   gitignores: string[]
   config?: any
 }
+
+export type Display = 'block' | 'inline' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'inline-grid' | 'flow-root' | 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset' | 'table' | 'table-row' | 'list-item'
