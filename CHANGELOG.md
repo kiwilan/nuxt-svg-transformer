@@ -1,3 +1,8 @@
+## 0.1.3
+
+* Really fix `display` prop (0a59e0b)
+* 0.1.2 changelog (7e62625)
+
 ## 0.1.2
 
 Fix: `display` prop to `SvgIcon` component.
