@@ -30,6 +30,33 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 
 See [documentation](https://nuxt-svg-transformer.netlify.app/get-started).
 
+## Local
+
+### Installation
+
+- Clone repository
+- Install dependencies using `pnpm i`
+- Prepare using `pnpm dev:prepare`
+- Try playground using `pnpm dev`
+
+### Testing
+
+Create a `tgz`.
+
+```bash
+rm -f ~/nuxt-svg-transformer-*.tgz && npm pack && mv nuxt-svg-transformer-*.tgz ~/
+```
+
+Add it to your Nuxt app.
+
+```json
+{
+  "devDependencies": {
+    "nuxt-svg-transformer": "file:~/nuxt-svg-transformer-0.0.9.tgz"
+  }
+}
+```
+
 ## More typescript in your app?
 
 Try [nuxt-typed-link](https://github.com/kiwilan/nuxt-typed-link) to get typed link into your app.

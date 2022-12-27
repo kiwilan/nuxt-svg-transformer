@@ -70,8 +70,9 @@ export default defineNuxtModule<ModuleOptions>({
         await Icons.make(opts)
     })
 
-    const { resolve } = createResolver(import.meta.url)
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    const url = import.meta.url
+    const { resolve } = createResolver(url)
+    const runtimeDir = fileURLToPath(new URL('./runtime', url))
     nuxt.options.build.transpile.push(runtimeDir)
 
     addComponent({
