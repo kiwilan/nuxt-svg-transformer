@@ -1,3 +1,10 @@
+## 0.1.2
+
+Fix: `display` prop to `SvgIcon` component.
+
+* Fix: `display` prop to `SvgIcon` component (776184c)
+* 0.1.1 changelog (688a23d)
+
 ## 0.1.1
 
 Config option `inlineBlock` to `display`, add `display` prop to component to override.
