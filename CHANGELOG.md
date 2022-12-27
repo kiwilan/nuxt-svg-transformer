@@ -1,4 +1,28 @@
-### 0.0.9
+## 0.1.0
+
+Export ModuleOptions fixed.
+
+* ModuleOptions export fix (139def3)
+* docs (7397195)
+* playground opts (8c8de6b)
+* docs improve (33b48ff)
+* readme fix (e139821)
+* readme docs (41736b7)
+* actions name (7cb26c2)
+* docs (0cfd35a)
+* netlify deploy (6e6b5b1)
+* netlify fix (01ee3b9)
+* netlify (288a313)
+* docs cleaning (cf65c31)
+* docs clean (faf6c7b)
+* add docs (7b95537)
+* docs fix (1026055)
+* tasks fix (df1f2c6)
+* change cover (0a618ea)
+* actions fix name (67ec0fc)
+* changelog for 0.0.9 (f698cf7)
+
+## 0.0.9
 
 Issue #4 fixed by extended Vite config from <https://github.com/nuxt-modules/strapi/pull/232>.
 
@@ -18,7 +42,7 @@ Issue #4 fixed by extended Vite config from <https://github.com/nuxt-modules/str
 * improve docs (fdbdf87)
 * module infos (8b2e644)
 
-### 0.0.8
+## 0.0.8
 
 * `title` option bug fix.
 
