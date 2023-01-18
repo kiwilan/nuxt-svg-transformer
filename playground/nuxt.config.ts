@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  // srcDir: 'src/',
   css: ['~/assets/css/app.css'],
   modules: [
     // 'nuxt-svg-transformer',
