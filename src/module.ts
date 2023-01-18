@@ -187,6 +187,7 @@ export default defineNuxtModule<ModuleOptions>({
       config.server.fs = config.server.fs || {}
       config.server.fs.allow = config.server.fs.allow || []
       config.server.fs.allow.push('..')
+      config.server.fs.allow.push('../..')
     })
   },
 })
