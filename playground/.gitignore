@@ -4,3 +4,5 @@ node_modules
 assets/icons/cache
 
 assets/svg-transformer-list.ts
+
+/svg-transformer-list.ts

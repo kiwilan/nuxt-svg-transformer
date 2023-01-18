@@ -127,12 +127,14 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: DEFAULTS,
   async setup(options, nuxt) {
-    const root = nuxt.options.rootDir
+    const root = nuxt.options.srcDir
 
     const assetsPath = `${root}/${options.assetsDir}`
     const typeFile = 'svg-transformer.d.ts'
     const indexFile = 'svg-transformer-list.ts'
     const indexPath = `${nuxt.options.dir.assets}/${indexFile}`
+    // const indexPath = `${indexFile}`
+
     const opts: NuxtSvgTransformerModule = {
       ...options,
       root,
@@ -185,6 +187,7 @@ export default defineNuxtModule<ModuleOptions>({
       config.server.fs = config.server.fs || {}
       config.server.fs.allow = config.server.fs.allow || []
       config.server.fs.allow.push('..')
+      config.server.fs.allow.push('../..')
     })
   },
 })
