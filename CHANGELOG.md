@@ -1,3 +1,9 @@
+## 0.1.5
+
+- issue #5 add upper path for vite allow fs (390bc8f)
+- component prop type for display (4fa8aff)
+- docs (a23f39d)
+
 ## 0.1.4
 
 - issue #5: change root path to srcDir (986eea6)
