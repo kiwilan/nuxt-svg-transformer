@@ -14,7 +14,7 @@ interface Props {
   lazy?: boolean
   reactive?: boolean
   log?: boolean
-  display?: Display | false
+  display?: Display
 }
 
 const props = withDefaults(defineProps<Props>(), {
