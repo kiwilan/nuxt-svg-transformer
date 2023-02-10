@@ -1,5 +1,4 @@
-import { fileURLToPath } from 'url'
-import { existsSync, mkdirSync, rm, rmdirSync, writeFileSync } from 'fs'
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import { addComponent, addTemplate, createResolver, defineNuxtModule, extendViteConfig } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import { Icons } from './tools/icons'
@@ -165,14 +164,11 @@ export default defineNuxtModule<ModuleOptions>({
         await Icons.make(opts)
     })
 
-    const url = import.meta.url
-    const { resolve } = createResolver(url)
-    const runtimeDir = fileURLToPath(new URL('./runtime', url))
-    nuxt.options.build.transpile.push(runtimeDir)
+    const resolver = createResolver(import.meta.url)
 
     addComponent({
       name: options.componentName,
-      filePath: resolve(runtimeDir, 'component.vue'),
+      filePath: resolver.resolve('./runtime/component.vue'),
     })
 
     nuxt.options.alias['#svg-transformer-options'] = addTemplate({
