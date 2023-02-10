@@ -1,4 +1,4 @@
-import { resolve, sep } from 'path'
+import { resolve } from 'path'
 import { readdir } from 'fs/promises'
 
 export interface File {

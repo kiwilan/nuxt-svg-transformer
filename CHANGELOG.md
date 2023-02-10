@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Remove `fileURLToPath` (for issue #5 )
+- Fix wrong build (for issue #6 )
+
 ## 0.1.5
 
 - issue #5 add upper path for vite allow fs (390bc8f)

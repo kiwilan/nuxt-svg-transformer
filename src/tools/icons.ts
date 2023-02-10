@@ -1,4 +1,4 @@
-import { createWriteStream, existsSync, mkdirSync, rm, rmdirSync } from 'fs'
+import { createWriteStream, existsSync, mkdirSync, rm } from 'fs'
 import type { NuxtSvgTransformerModule } from '../types'
 import type { File } from './reader'
 import Reader from './reader'
