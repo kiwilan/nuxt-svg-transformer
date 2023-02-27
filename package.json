@@ -1,6 +1,6 @@
 {
   "name": "nuxt-svg-transformer",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Transform SVG to inject dynamically into Vue component for Nuxt 3.",
   "repository": {
     "directory": "kiwilan/nuxt-svg-transformer",
@@ -47,7 +47,7 @@
     "docs:dev": "cd docs && pnpm i && pnpm dev",
     "docs:build": "cd docs && pnpm i && pnpm generate",
     "docs:preview": "cd docs && pnpm preview",
-    "release": "pnpm test && standard-version && git push --follow-tags && npm publish",
+    "release": "pnpm prepack && pnpm test && standard-version",
     "test": "pnpm lint"
   },
   "dependencies": {
