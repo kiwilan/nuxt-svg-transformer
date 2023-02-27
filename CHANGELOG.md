@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 0.2.2 (2023-02-27)
+
+
+### Bug Fixes
+
+* `display` prop to `SvgIcon` component ([776184c](https://github.com/kiwilan/nuxt-svg-transformer/commit/776184c9c23da7d6a8314341104060eab0a21aa1))
+
 ## 0.2.0
 
 - Remove `fileURLToPath` (for issue #5 )
