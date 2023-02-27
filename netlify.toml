@@ -2,5 +2,5 @@
 
 [build]
   base    = ""
-  command = "cd docs && pnpm i && pnpm generate"
+  command = "nuxt-module-build --stub && nuxi prepare playground && cd docs && pnpm i && pnpm generate"
   publish = "docs/dist"
