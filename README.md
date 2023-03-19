@@ -28,6 +28,29 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 
 ## Usage
 
+```bash
+npm i nuxt-svg-transformer
+```
+
+```bash
+yarn add nuxt-svg-transformer
+```
+
+```bash
+pnpm add nuxt-svg-transformer
+```
+
+```ts
+export default defineNuxtConfig({
+  modules: [
+    "nuxt-svg-transformer", // https://github.com/kiwilan/nuxt-svg-transformer
+  ],
+  svgTransformer: {
+    // Options
+  },
+});
+```
+
 See [documentation](https://nuxt-svg-transformer.netlify.app/get-started).
 
 ## Local
@@ -69,12 +92,9 @@ Try [nuxt-typed-link](https://github.com/kiwilan/nuxt-typed-link) to get typed l
 
 [nuxt-version-src]: https://img.shields.io/static/v1?label=Nuxt&message=v3&color=28cf8d&logo=nuxt.js&logoColor=ffffff&labelColor=18181b
 [nuxt-version-href]: https://npmjs.com/package/nuxt-svg-transformer
-
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-svg-transformer/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/nuxt-svg-transformer
-
 [npm-downloads-src]: https://img.shields.io/npm/dt/nuxt-svg-transformer.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/nuxt-svg-transformer
-
 [license-src]: https://img.shields.io/github/license/kiwilan/nuxt-svg-transformer.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://github.com/kiwilan/nuxt-svg-transformer/blob/main/LICENSE
