@@ -29,15 +29,15 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 ## Usage
 
 ```bash
-npm i nuxt-svg-transformer
+npm i nuxt-svg-transformer --save-dev
 ```
 
 ```bash
-yarn add nuxt-svg-transformer
+yarn add nuxt-svg-transformer --dev
 ```
 
 ```bash
-pnpm add nuxt-svg-transformer
+pnpm add nuxt-svg-transformer --save-dev
 ```
 
 ```ts
