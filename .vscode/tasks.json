@@ -53,7 +53,7 @@
       }
     },
     {
-      "label": "pre-deploy",
+      "label": "merge-to-main",
       "type": "shell",
       "command": "git checkout main && git merge develop && git push && git checkout develop",
       "problemMatcher": [],
