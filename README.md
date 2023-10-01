@@ -34,14 +34,10 @@ Install the module:
 
 ```bash
 npm i nuxt-svg-transformer --save-dev
-```
-
-```bash
+# or
 yarn add nuxt-svg-transformer --dev
-```
-
-```bash
-pnpm add nuxt-svg-transformer --save-dev
+# or
+pnpm add nuxt-svg-transformer -D
 ```
 
 Add it to `nuxt.config.ts`:
@@ -58,6 +54,14 @@ export default defineNuxtConfig({
 ```
 
 ### unplugin
+
+```bash
+npm i unplugin-svg-transformer --save-dev
+# or
+yarn add unplugin-svg-transformer --dev
+# or
+pnpm add unplugin-svg-transformer -D
+```
 
 If you use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead, you can use the same options.
 
