@@ -1,11 +1,9 @@
-[![nuxt-svg-transformer](./docs/public/cover.jpg "nuxt-svg-transformer")](./docs/public/cover.jpg)
+# Nuxt SVG transformer
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-version-src]][nuxt-version-href]
-
-# Nuxt SVG transformer
 
 > [!IMPORTANT]
 >
@@ -27,6 +25,10 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 - 🦾 SVG typed, validate by `name` prop (`typescript` required)
 
 ## Usage
+
+> **Warning**
+>
+> This configuration will be deprecated in the future. Please consider to use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead.
 
 Install the module:
 
@@ -54,6 +56,8 @@ export default defineNuxtConfig({
   },
 });
 ```
+
+### unplugin
 
 If you use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead, you can use the same options.
 
