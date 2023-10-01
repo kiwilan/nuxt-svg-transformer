@@ -26,6 +26,8 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 
 ## Usage
 
+### Deprecated module
+
 > **Warning**
 >
 > This configuration will be deprecated in the future. Please consider to use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead.
