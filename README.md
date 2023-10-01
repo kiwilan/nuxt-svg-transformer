@@ -1,13 +1,8 @@
 # Nuxt SVG transformer
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-version-src]][nuxt-version-href]
-
 > [!IMPORTANT]
 >
-> This repository is now a drone of [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer), the successor of `nuxt-svg-transformer`. To avoid too many changements for users, the `nuxt-svg-transformer` will receive only Nuxt version of `unplugin-svg-transformer` and will be deprecated in the future. Please consider to use `unplugin-svg-transformer` instead.
+> This repository is now deprecated in favor of [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer), the successor of `nuxt-svg-transformer`. Please consider to use `unplugin-svg-transformer` instead.
 
 A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
@@ -24,9 +19,28 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 - 🎨 Options to add or clear `style` and `class` global attributes
 - 🦾 SVG typed, validate by `name` prop (`typescript` required)
 
+## Migration to `unplugin-svg-transformer`
+
+Breaking changes:
+
+- Cache directory is now hidden by default
+- Works with `unplugin`
+- Options:
+  - `fallback` option is now `string`
+  - `componentName` removed (`SvgIcon` is now the default for Vue/Nuxt/React components)
+  - `assetsDir` is now `svgDir` and should contains only your SVG files
+  - `lazy` removed
+  - `log` is now `warning`
+  - `display` removed, use `svg` group `inlineStyleDefault` instead
+  - `reactive` removed, use `reactive` prop on Vue/Nuxt component instead (React component is always reactive)
+  - New option `svg` group `classDefault`, `clearClass`, `clearSize`, `clearStyle`, `sizeInherit`, `inlineStyleDefault`, `title`, `currentColor`
+  - `styleDefault` is now `inlineStyle` into `svg` group
+  - `inlineStyle` is now `inlineStyleDefault`
+  - `classDefault` and `inlineStyleDefault` are now `string[]`
+
 ## Usage
 
-If you use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead `nuxt-svg-transformer`, you can use the same options.
+This documentation offer to install [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead `nuxt-svg-transformer` (deprecated), you can use the same options.
 
 ```bash
 npm i unplugin-svg-transformer --save-dev
@@ -51,46 +65,8 @@ export default defineNuxtConfig({
 
 See [documentation](https://github.com/kiwilan/unplugin-svg-transformer#readme).
 
-### Deprecated module
-
-> **Warning**
->
-> This configuration will be deprecated in the future. Please consider to use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead.
-
-Install the module:
-
-```bash
-npm i nuxt-svg-transformer --save-dev
-# or
-yarn add nuxt-svg-transformer --dev
-# or
-pnpm add nuxt-svg-transformer -D
-```
-
-Add it to `nuxt.config.ts`:
-
-```ts
-export default defineNuxtConfig({
-  modules: [
-    "nuxt-svg-transformer", // https://github.com/kiwilan/nuxt-svg-transformer
-  ],
-  svgTransformer: {
-    // Options
-  },
-});
-```
-
 ## License
 
 [MIT](./LICENSE) - Made with 💚
 
 [<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="120rem" width="100%" />](https://github.com/kiwilan)
-
-[nuxt-version-src]: https://img.shields.io/static/v1?label=Nuxt&message=v3&color=28cf8d&logo=nuxt.js&logoColor=ffffff&labelColor=18181b
-[nuxt-version-href]: https://npmjs.com/package/nuxt-svg-transformer
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-svg-transformer/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/nuxt-svg-transformer
-[npm-downloads-src]: https://img.shields.io/npm/dt/nuxt-svg-transformer.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/nuxt-svg-transformer
-[license-src]: https://img.shields.io/github/license/kiwilan/nuxt-svg-transformer.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://github.com/kiwilan/nuxt-svg-transformer/blob/main/LICENSE
