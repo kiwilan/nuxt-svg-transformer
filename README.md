@@ -26,6 +26,31 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 
 ## Usage
 
+If you use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead `nuxt-svg-transformer`, you can use the same options.
+
+```bash
+npm i unplugin-svg-transformer --save-dev
+# or
+yarn add unplugin-svg-transformer --dev
+# or
+pnpm add unplugin-svg-transformer -D
+```
+
+Add it to `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  modules: [
+    "unplugin-svg-transformer/nuxt", // https://github.com/kiwilan/unplugin-svg-transformer
+  ],
+  svgTransformer: {
+    // Options
+  },
+});
+```
+
+See [documentation](https://github.com/kiwilan/unplugin-svg-transformer#readme).
+
 ### Deprecated module
 
 > **Warning**
@@ -54,31 +79,6 @@ export default defineNuxtConfig({
   },
 });
 ```
-
-### unplugin
-
-```bash
-npm i unplugin-svg-transformer --save-dev
-# or
-yarn add unplugin-svg-transformer --dev
-# or
-pnpm add unplugin-svg-transformer -D
-```
-
-If you use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead, you can use the same options.
-
-```ts
-export default defineNuxtConfig({
-  modules: [
-    "unplugin-svg-transformer/nuxt", // https://github.com/kiwilan/unplugin-svg-transformer
-  ],
-  svgTransformer: {
-    // Options
-  },
-});
-```
-
-See [documentation](https://github.com/kiwilan/unplugin-svg-transformer#readme).
 
 ## License
 
