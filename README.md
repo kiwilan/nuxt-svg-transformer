@@ -5,15 +5,15 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-version-src]][nuxt-version-href]
 
-![ci](https://github.com/kiwilan/nuxt-svg-transformer/actions/workflows/ci.yml/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bfdc4eb4-5a04-42ef-8fc8-f57a38317746/deploy-status)](https://app.netlify.com/sites/frabjous-sherbet-a6e961/deploys)
-
 # Nuxt SVG transformer
+
+> [!IMPORTANT]
+>
+> This repository is now a drone of [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer), the successor of `nuxt-svg-transformer`. To avoid too many changements for users, the `nuxt-svg-transformer` will receive only Nuxt version of `unplugin-svg-transformer` and will be deprecated in the future. Please consider to use `unplugin-svg-transformer` instead.
 
 A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically into Vue component, type included.
 
-- [📖 &nbsp;Read the documentation](https://nuxt-svg-transformer.netlify.app)
-- [👾 &nbsp;Playground](https://stackblitz.com/edit/nuxt-starter-vvr4qn)
+- [📖 &nbsp;Read the documentation](https://github.com/kiwilan/unplugin-svg-transformer#readme)
 
 ## Features
 
@@ -28,6 +28,8 @@ A **Nuxt 3** module to manage SVG as icons, transform SVG to inject dynamically 
 
 ## Usage
 
+Install the module:
+
 ```bash
 npm i nuxt-svg-transformer --save-dev
 ```
@@ -40,6 +42,8 @@ yarn add nuxt-svg-transformer --dev
 pnpm add nuxt-svg-transformer --save-dev
 ```
 
+Add it to `nuxt.config.ts`:
+
 ```ts
 export default defineNuxtConfig({
   modules: [
@@ -51,38 +55,20 @@ export default defineNuxtConfig({
 });
 ```
 
-See [documentation](https://nuxt-svg-transformer.netlify.app/get-started).
+If you use [`unplugin-svg-transformer`](https://github.com/kiwilan/unplugin-svg-transformer) instead, you can use the same options.
 
-## Local
-
-### Installation
-
-- Clone repository
-- Install dependencies using `pnpm i`
-- Prepare using `pnpm dev:prepare`
-- Try playground using `pnpm dev`
-
-### Testing
-
-Create a `tgz`.
-
-```bash
-rm -f ~/nuxt-svg-transformer-*.tgz && npm pack && mv nuxt-svg-transformer-*.tgz ~/
+```ts
+export default defineNuxtConfig({
+  modules: [
+    "unplugin-svg-transformer/nuxt", // https://github.com/kiwilan/unplugin-svg-transformer
+  ],
+  svgTransformer: {
+    // Options
+  },
+});
 ```
 
-Add it to your Nuxt app.
-
-```json
-{
-  "devDependencies": {
-    "nuxt-svg-transformer": "file:~/nuxt-svg-transformer-0.0.9.tgz"
-  }
-}
-```
-
-## More typescript in your app?
-
-Try [nuxt-typed-link](https://github.com/kiwilan/nuxt-typed-link) to get typed link into your app.
+See [documentation](https://github.com/kiwilan/unplugin-svg-transformer#readme).
 
 ## License
 
